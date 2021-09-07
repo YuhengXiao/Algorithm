@@ -1,0 +1,37 @@
+标答：不是先相加后进位，而是先进位后相加（后者避免了：遍历删除需要进位的子链）。
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next; //定义next时是根据class名字来定义，而不是link next。
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode head = null, tail = null;
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            int n1 = l1 != null ? l1.val : 0;// 如果?前面的式子为真，那么就返回冒号:左边的值;否则返回右边的值（此方法避免了两个加数位数不同的分类讨论）
+            int n2 = l2 != null ? l2.val : 0;
+            int sum = n1 + n2 + carry;
+            if (head == null) {//因为不是从fisrt开始插入，要判断是否有next
+                head = tail = new ListNode(sum % 10); //当链表为空时，插入不用“tail.next”而是直接用“tail”
+            } else {
+                tail.next = new ListNode(sum % 10); //%10取10的余数
+                tail = tail.next;}
+            carry = sum / 10;// 结果去掉小数点，只是保留整数部分
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+        }
+        if (carry > 0) {
+            tail.next = new ListNode(carry);}
+        return head;// 1.head链表位置在链表头（作用类似于first，但此程序没有定义link所所以不能使用first）可以返回整个链表的值，而此时tail链表只能返回当前尾部的值。2.java中的“=”不是赋值，而是指向某一变量，当被指向的变量值改变了，指向的变量也会跟着自动改变。
+    }
+}
