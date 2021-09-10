@@ -20,19 +20,15 @@ class Solution
 }
 
 标答：哈希表法（更高效）
-class Solution 
-{
-public int[] twoSum(int[] nums, int target) 
-{
-        Map<Integer, Integer> hashtable = new HashMap<Integer, Integer>();
-        for (int i = 0; i < nums.length; ++i)
-             {
-            if (hashtable.containsKey(target - nums[i]))
-                 {
-                return new int[]{hashtable.get(target - nums[i]), i};
-                }
-            hashtable.put(nums[i], i);
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> sum =  new HashMap<Integer,Integer>();
+        for(int i=0; i < nums.length; i++){
+            if(sum.containsKey(target-nums[i])){
+                return new int[]{sum.get(target-nums[i]),i};
             }
-        return new int[0];
-       }
+            sum.put(nums[i],i);
+        }
+        return new int[]{0};
+    }
 }
