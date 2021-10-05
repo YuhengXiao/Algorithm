@@ -1,25 +1,3 @@
-class Solution 
-{
-    public int[] twoSum(int[] nums, int target)
-    {
-          
-        int n=nums.length;
-        int sum=0;
-        int i,k,m;
-        for(i=0;i<n;i++)
-        {
-            for(k=i+1;k<n;k++)
-            {
-                sum=nums[i]+nums[k];
-                if(sum==target)
-                return new int[]{i, k};
-            }
-        }
-    return new int[0]; //返回值的格式要和函数格式一致，不能返回0 
-    }
-}
-
-标答：哈希表法（更高效）
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer,Integer> sum =  new HashMap<Integer,Integer>();
@@ -32,3 +10,79 @@ class Solution {
         return new int[]{0};
     }
 }
+
+/*
+Notes:
+
+1.	“array.length”: get the size(we int[] defined, not the number of  elements) of an array.
+    int n=array.length;
+
+2.	“string.length()”: get the size(we string[] defined, not the number of elements) of an string.
+    int n=str.length();
+
+3.	“return value”: make sure the type of “return value” and “public function” are same.
+    public int[] twoSum(int[] nums, int target)
+       return new int[0]; 
+
+4.	“iterate array”: iterate the whole array by using “for( : )”. It’s different when you iterate a HashMap(NEED ADD “HashMap.KeySet()”or “HashMap.values()”).
+     String arr[]={"hi","hello","bye"};
+     for (String str : arr) {
+         System.out.println(str);
+     }
+
+5.	“HashMap”: store items in "key/value" pairs, and you can access them by an index of another type.
+(1)	Create a HashMap object:
+    import java.util.HashMap;
+    public class Main {
+    public static void main(String[] args) {
+    // Create a HashMap object called people
+    HashMap<String, Integer> people = new HashMap<String, Integer>();
+(2)	Add items to a HashMap object:
+    capitalCities.put("USA", "Washington DC");
+    System.out.println(capitalCities);
+(3)	Remove an item from a HashMap object:
+    capitalCities.remove("England");
+(4)	Remove all items of a HashMap object:
+    capitalCities.clear();
+(5)	Get the size of a HashMap object:
+    capitalCities.size();
+(6)	Loop Through a HashMap:
+   <1> keySet() :method if you only want all the keys.
+       // Print keys
+       for (String i : capitalCities.keySet()) {
+          System.out.println(i);
+       }
+<2> values() :method if you only want all the values.
+      // Print values
+      for (String i : capitalCities.values()) {
+          System.out.println(i);
+      }
+<3> get():method if you just want the value of a particular key.
+      // Print keys and values
+      for (String i : capitalCities.keySet()) {
+          System.out.println("key: " + i + " value: " + capitalCities.get(i));
+      }
+<4> containsKey(): method is used to check whether a particular key is present in the Hashtable or not. It takes the key element as a parameter and returns True if that element is present in the table.
+      //Example 1: Checking for the key_element '20':
+      System.out.println("Is the key '20' present? " + hashtable.containsKey(20));
+      //Output:
+      Is the key '20' present? True
+
+      //Example 2: Reducing operations of “containsKey()” by iterating first and then adding an item each time. (We have to check all the items each time if we have added all of items to HashMap already.)
+
+        for(int i=0; i < nums.length; i++){
+            if(sum.containsKey(target-nums[i])){
+                return new int[]{sum.get(target-nums[i]),i};
+            }
+            sum.put(nums[i],i);
+        }
+
+(7)	Other Types of keys and values of a HashMap object:
+     "String" for string. “Integer” for int. “Boolean” for boolean, “Character” for char, “Double” for double.
+    // Create a HashMap object called people
+     HashMap<String, Integer> people = new HashMap<String, Integer>();
+    // Add keys and values (Name, Age)
+    people.put("John", 32);
+
+
+*/
