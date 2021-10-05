@@ -14,3 +14,23 @@ class Solution {
         return max;
     }
 }
+
+/*
+Note:
+
+1.	 “HashSet”: The difference between HashSet and HashMap:
+             HASHSET	                                                                                          HASHMAP
+HashSet only maintains value.   e.g. {“Hello”, “Hi”, “Bye”, “Run”}	                     HashMap maintains the key & value.  e.g. {1->”Hello”, 2->”Hi”, 3->”Bye”, 4->”Run”}                                                       
+HashSet can’t store duplicate values in HashSet.	                                     HashMap does not allow duplicate keys however it allows to have duplicate values.
+HashSet permits to have a single null value.	                                         HashMap permits single null key and any number of null values.
+HashSet.contains("Value");	                                                             HashMap.containsKey(“Key element”)
+HashSet.add();	                                                                         HashMap.put();
+
+2.	String “charAt(int index)” Method: d returns the character at the specified index(0,1,2…) in a string.
+    String myStr = "Hello";
+    char result = myStr.charAt(0);
+    System.out.println(result);
+
+3.	“Math.max(a,b)”: return the biggest value between a and b.
+   max=Math.max(a,b);
+*/
