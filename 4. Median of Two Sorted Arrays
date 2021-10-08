@@ -1,0 +1,29 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int sum[]= new int[nums1.length+nums2.length];
+        for(int i=0; i<nums1.length;i++){
+            sum[i] = nums1[i];
+        }
+        int k = nums1.length;
+        for(int j=0; j<nums2.length;j++){
+            sum[k+j] = nums2[j];
+        }
+        Arrays.sort(sum);//(O(n+m)*log(n+m))
+        if(sum.length %2==1){
+            return sum[sum.length/2];
+        }
+        else{
+            return (sum[sum.length/2]+sum[sum.length/2-1])/2.0;
+        }
+    }
+}
+
+/*
+Note:
+1.	“Arrays.sort(arr)”: sort the array in a non-decreasing order.
+        for(int i=0; i<n; i++){
+            nums1[m+i] = nums2[i];
+        }
+        Arrays.sort(nums1);
+2.	“Arrays.sort(arr, Collections.reverseOrder());”:sort the array in a decreasing order.
+*/
