@@ -1,0 +1,72 @@
+class Solution {
+    public String longestPalindrome(String s) {
+        int maxlen = 1; 
+        int begin = 0;
+        int len = s.length();
+        if (len< 2){
+            return s;
+        }
+        char[] array = s.toCharArray(); //Converting every letter of the sting into an array
+        boolean [][] dp = new boolean[len][len];
+        for (int i = 0; i < len; i++){
+            dp[i][i] = true;
+        }
+        for(int temp_len = 2; temp_len <= len; temp_len++){
+            for (int left = 0; left < len; left++){
+                int right = left + temp_len -1;
+                if (right >= len){
+                    break;
+                }
+                if (array[left] != array[right]){
+                    dp[left][right] = false;
+                }
+                else{
+                    if (right - left < 3){ // consider two particular situations of "bb" / "bab"
+                        dp[left][right] = true;
+                    }
+                    else{
+                        dp[left][right] = dp[left + 1][right - 1]; // The Boolean(true/false) of inside be passed into outside
+                    }
+                }
+                if (dp[left][right] && right - left + 1 > maxlen){
+                    maxlen = right - left + 1;
+                    begin = left;
+                }
+            }
+        }
+        return s.substring(begin, begin + maxlen);
+   }
+}
+
+/*
+Note:
+
+1.	Concatenate chars to form String:
+<1>If you add two strings, the result will be a string concatenation:
+   String x = "10";
+   String y = "20";
+   String z = x + y;   // z will be 1020 (a String)
+<2>If you add a number and a string, the result will be a string concatenation:
+   String x = "10";
+   int y = 20;
+   String z = x + y;   // z will be 1020 (a String)
+2.	“substring(int begIndex, int endIndex)”: Slicing: extracting part of a string(from starting index to ending index).
+        String Str = new String("Welcome to geeksforgeeks");
+        System.out.println(Str.substring(10, 16)); // returns geeks
+
+3.	“toCharArray()”: converting a String into sequence of characters. 
+       String str = new String("Welcome to BeginnersBook.com");
+       char[] array= str.toCharArray();
+       System.out.print("Content of Array:");
+       for(char c: array){
+           System.out.print(c);
+4.	“toCharArray()”: Converting every letter of the sting into an array:
+   char[] array = s.toCharArray();
+5.	“Dynamic Programming”: Avoiding unnecessary comparison while we already know the inside is not valid.
+    boolean [][] dp = new boolean[len][len];
+    for (int i = 0; i < len; i++){
+            dp[i][i] = true;
+        }
+        dp[left][right] = dp[left + 1][right - 1]; // The Boolean(true/false) of inside be passed into outside
+
+*/
