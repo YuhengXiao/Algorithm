@@ -40,6 +40,7 @@ class Solution {
 
 /*
 Note:
+(Dynamic Programming Approach: easy but codes too long): “Recursion Approach” and “Dynamic Programming” can switch at any time. 
 
 1.	Concatenate chars to form String:
 <1>If you add two strings, the result will be a string concatenation:
