@@ -17,5 +17,5 @@ class Solution {
 Note:
 
 (Recursion Approach: precise but difficult):
-“Recursion Approach” and “Dynamic Programming” can switch at any time. You can also use “Dynamic Programming”(like Q5, but the codes is longer).
+“Recursion Approach” and “Dynamic Programming” can switch , like Question 5 using “Dynamic Programming”(but the codes is longer).
 */
