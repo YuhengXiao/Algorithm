@@ -18,4 +18,6 @@ Note:
 
 (Recursion Approach: precise but difficult):
 “Recursion Approach” and “Dynamic Programming” can switch , like Question 5 using “Dynamic Programming”(but the codes is longer).
+A common error is to not cover all possible base cases in a recursive method. 
+Another common error is to write a recursive method that doesn't always reach a base case. Both errors may lead to infinite recursion, causing the program to fail.
 */
