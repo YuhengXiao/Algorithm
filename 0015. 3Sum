@@ -1,0 +1,52 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Arrays.sort(nums);
+        for (int first = 0; first < nums.length; first ++){
+            if(first > 0 && nums[first] == nums[first - 1]){
+                continue;
+            }
+            int third = nums.length - 1;
+            for( int second = first + 1; second < nums.length; second++){
+                if(second > first + 1 && nums[second] == nums[second - 1]){
+                    continue;
+                    }
+                    while(second + 1 < third && nums[second] + nums[third] > -nums[first]){ 
+                        third --;
+                    }
+                    if(second == third){
+                        break;
+                    }
+                    if(nums[second] + nums[third] == -nums[first]){
+                    List<Integer> part = new ArrayList<Integer>();
+                    part.add(nums[first]);
+                    part.add(nums[second]);
+                    part.add(nums[third]);
+                    result.add(part);
+                    }
+            }
+
+        }
+        return result;
+    }
+}
+
+/*
+Note:
+(Sort + Two Pointer Approach): Space complexity(O(n^2)) is better than “three for loops(O(n^3))”.
+1.	we need to make sure that “left pointer” is always on the left of “right pointer”.
+2.	We must consider when to stop “moving pointers”. 
+    In this case, there are no more suitable combination when two pointer point to same index, because we are in a sorted array, then we can stop “moving pointers”.
+
+
+1.	List<Integer> part = new ArrayList<Integer>();
+    Creating a List.
+2.	List<List<Integer>> result = new ArrayList<List<Integer>>();
+    Creating a List of List.
+3.	Shifting the pointer to avoid pointer with same value.
+        for (int first = 0; first < nums.length; first ++){
+            if(first > 0 && nums[first] == nums[first - 1]){
+                continue;
+            }
+
+*/
