@@ -1,0 +1,57 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        List<String> Combinations = new ArrayList<String>();
+        if (digits.length() == 0){
+            return Combinations;
+        }
+        Map<Character, String> phone = new HashMap<Character, String>();
+            phone.put('2', "abc");
+            phone.put('3', "def");
+            phone.put('4', "ghi");
+            phone.put('5', "jkl");
+            phone.put('6', "mno");
+            phone.put('7', "pqrs");
+            phone.put('8', "tuv");
+            phone.put('9', "wxyz");
+        StringBuffer temp = new StringBuffer();
+        backtraking(Combinations, phone, digits, 0, temp);
+        return Combinations;
+    }
+
+    public void backtraking(List<String> Combinations, Map<Character, String> phone, String digits, int index, StringBuffer temp){
+        if (index == digits.length()){
+            Combinations.add(temp.toString());
+        }
+        else{
+            char num = digits.charAt(index);
+            String letters = phone.get(num);
+            for(int i =0; i < letters.length(); i++){
+                temp.append(letters.charAt(i));
+                backtraking(Combinations, phone, digits, index + 1, temp);
+                temp.deleteCharAt(index);
+            }
+        }
+    }
+    
+}
+
+/*
+Note:
+(Backtracking: is a general algorithm for finding solutions to some computational problems, notably constraint satisfaction problems, that incrementally builds candidates to the solutions, and abandons a candidate ("backtracks") as soon as it determines that the candidate cannot possibly be completed to a valid solution.)
+
+    The difference between “recursion” and “backtracking”:
+    recursion - no values abandoned(must have a “base case”);  
+    backtracking - abandon some solution candidates(might have a “base case”);
+
+1.	The StringBuffer class: are used when there is a necessity to make a lot of modifications to Strings of characters. (The difference between “StringBuffer” and “Creating a new List” to store String is : String stored in “StringBuffer” are concatenate, but in “Creating a new List” they are nested string.)
+   public static void main(String args[]) {
+      StringBuffer sBuffer = new StringBuffer();
+      sBuffer.append(" String Buffer");
+      System.out.println(sBuffer);  
+   }
+2.	capacity():Returns the current capacity of the String buffer.
+3.	delete(int startIndex, int endIndex):
+    s.delete(0, 5);
+4.	deleteCharAt(int loc):
+    s.deleteCharAt(7);
+*/
