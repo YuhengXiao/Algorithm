@@ -38,7 +38,7 @@ Note:
 2.	We must consider when to stop “moving pointers”. 
     In this case, there are no more suitable combination when two pointer point to same index, because we are in a sorted array, then we can stop “moving pointers”.
 
-
+(The difference between “List” and “Map” is the search key of “List” is index(int), but the search key of “Map” can be string/char, etc.)
 1.	List<Integer> part = new ArrayList<Integer>();
     Creating a List.
 2.	List<List<Integer>> result = new ArrayList<List<Integer>>();
