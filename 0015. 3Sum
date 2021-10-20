@@ -48,5 +48,26 @@ Note:
             if(first > 0 && nums[first] == nums[first - 1]){
                 continue;
             }
+4.	add(Object): This method is used to add an element at the end of the List.
+    al.add("Geeks");
+5.	add(int index, Object): This method is used to add an element at a specific index in the List
+    al.add(1, "Geeks");
+6.	set() method: Updating elements
+    al.set(1, "For");
+7.	remove(Object): 
+    al.remove("Geeks");
+8.	remove(int index):
+    al.remove(1);
+9.	Iterating over List:
+        // Using the Get method and the “for loop”
+        for (int i = 0; i < al.size(); i++) {
+ 
+            System.out.print(al.get(i) + " ");
+        }
+ 
+        // Using the for each loop
+        for (String str : al)
+            System.out.print(str + " ");
+
 
 */
