@@ -1,0 +1,54 @@
+class Solution {
+    public boolean isValid(String s) {
+
+        if (s.length() % 2 == 1){
+            return false;
+        }
+
+        Map<Character, Character> str = new HashMap<Character, Character>();
+        str.put(')', '(');
+        str.put(']', '[');
+        str.put('}', '{');
+
+        Deque<Character> stack = new LinkedList<Character>();
+        for (int i = 0; i < s.length(); i++){
+            char temp = s.charAt(i);
+            if(str.containsKey(temp)){
+                if (stack.isEmpty() || stack.peek() != str.get(temp)){
+                    return false;
+                }
+                stack.pop();
+            }else{
+                stack.addFirst(temp);
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+
+/*
+Note:
+  (We can use stack when we want to determine if the adjacent letters match)
+  (The difference between “Stack” and “Deque” is: Stack is a see also of deque.But elements of deque can be appended to or removed from either end.)
+1.	“Create a Deque”: the data structure of implementing Deque could be LinkedList, ArrayDeque, etc.
+    Deque<String> dq = new ArrayDeque<String>();
+2.	“Adding Elements”: 
+      dq.push("Geeks"); // add an element at the head of the queue.
+      dq.add("For"); // add an element at the tail of the queue.
+      dq.addFirst("Geeks"); 
+      dq.addLast("Geeks");
+3.	“Removing Elements”:
+      dq.pop();
+4.	“Retrieve the element but doesn’t remove”:
+       q.peek();
+      dq.peekFirst(); / getFirst();
+      dq.peekLast();  / getLast();
+5.	“.isEmpty()” : returns flase if the deque is empty.
+6.	“.poll()”: returns null if the deque is empty.
+7.	“Iterating through the Deque”:
+        for (Iterator itr = dq.iterator();
+             itr.hasNext();) {
+            System.out.print(itr.next() + " ");
+        }
+
+*/
