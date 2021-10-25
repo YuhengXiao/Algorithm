@@ -1,0 +1,43 @@
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if(lists.length == 0){
+            return null;
+        }
+        if(lists.length == 1){
+            return lists[0];
+        }
+        ListNode result = null;
+        for (int i = 0; i < lists.length; i++){
+            result = sortlist(result, lists[i]);
+        }
+        return result;
+    }
+
+    public ListNode sortlist(ListNode cur1, ListNode cur2){
+        ListNode prev = new ListNode(-1);
+        ListNode temp = prev;
+        while(cur1 != null && cur2 != null){
+            if (cur1.val > cur2.val){
+                prev.next = cur2;
+                cur2 = cur2.next;
+            }else{
+                prev.next = cur1;
+                cur1 = cur1.next;
+            }
+            prev = prev.next;
+        }
+        if (cur1 != null){
+            prev.next = cur1;
+        }
+        if (cur2 != null){
+            prev.next = cur2;
+        }
+        return temp.next;
+    }
+
+}
+
+/*
+Note:
+(We can Merge k sorted lists by merging each two sorted lists(the “result” and “next list”).)
+*/
