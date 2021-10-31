@@ -50,4 +50,20 @@ If we want list to be [[2],[2,3]]:
         tmp.add(3);
         list.add(tmp);
 
+2.	“List Interface”:
+  (1). “Creating a List/ List of List”:
+        List<Integer> combination = new ArrayList<Integer>();
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+
+  (2).”Adding item to List”:
+        add(Object): This method is used to add an element at the end of the List.
+        add(int index, Object): This method is used to add an element at a specific index in the List
+     
+  (3).”Updating item of List”:
+        ans.set(1, "For"): Setting (updating) element at 1st index
+  
+  (4).”Removing tiem of List”:
+        remove(Object): If there are multiple such objects, then the first occurrence of the object is removed.
+        remove(int index): After removing the element, all the elements are moved to the left to fill the space and the indices of the objects are updated.
+
 */
