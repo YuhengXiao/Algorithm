@@ -1,0 +1,35 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int left = binary(nums, target, true);
+        int right = binary(nums, target, false) - 1;
+        if (left >= 0 && left < nums.length && right >= 0 && right < nums.length && nums[left] == target && nums[right] == target){
+            return new int[]{left, right};
+        } else {
+            return new int []{-1, -1};
+        }
+    }
+
+    public int binary(int[]nums, int target, boolean lr){
+        int left = 0, right = nums.length - 1;
+        int ans = nums.length;
+        while(left <= right){
+            int mid = (left + right) / 2;
+            if (nums[mid] > target || lr && nums[mid] >= target){
+                right = mid - 1;
+                ans = mid;
+            } else{
+                left = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+}
+
+/*
+Note:
+
+1.	We can keep finding until find the leftmost/rightmost target(More than one target) if we don’t return the first target right away.
+2.	We can use different “Boolean” to call the same method to realize different functions.
+
+*/
