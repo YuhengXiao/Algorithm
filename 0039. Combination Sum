@@ -1,0 +1,53 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<Integer> combination = new ArrayList<Integer>();
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        backtrack(candidates, target, combination, ans, 0);
+        return ans;
+    }
+
+    public void backtrack(int[] candidates, int target, List<Integer> combination, List<List<Integer>> ans, int index){
+        if (index == candidates.length){
+            return;
+        }
+        if (target == 0){
+            ans.add(new ArrayList<Integer>(combination));
+            return;
+        }
+        if (target - candidates[index] >= 0){
+            combination.add(candidates[index]);
+            backtrack(candidates, target - candidates[index], combination, ans, index);
+            combination.remove(combination.size() - 1);
+        }
+        backtrack(candidates, target, combination, ans, index + 1);
+    }
+
+}
+
+/*
+Note:
+
+(1.	We can use recursion if we want get all the combinations of a list.
+2. We can use backtracking if we just want to get particular combinations of a list.)
+
+1.	“Adding a List to a List of List”: using “list.add(new LinkedList<Integer>(tmp));”( add a copy of this List to the "List of List”, instead of referencing the name of List)
+      List<List<Integer>> list = new LinkedList<List<Integer>>();
+      List<Integer> tmp = new LinkedList<Integer>();
+        tmp.add(2);
+        list.add(tmp);
+        tmp.add(3);
+        list.add(tmp);
+
+The result of list is [[2,3],[2,3]]; I just confused about that why it is not [[2],[2,3]]. 
+Because we just added a reference to tmp to list. 
+
+If we want list to be [[2],[2,3]]:
+
+     List<List<Integer>> list = new LinkedList<List<Integer>>();
+     List<Integer> tmp = new LinkedList<Integer>();
+        tmp.add(2);
+        list.add(new LinkedList<Integer>(tmp));  // add a copy of this linkedlist to the "BIG" list
+        tmp.add(3);
+        list.add(tmp);
+
+*/
