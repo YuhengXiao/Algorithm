@@ -1,0 +1,34 @@
+
+class Solution {
+    public void rotate(int[][] matrix) {
+        int[][] temp = new int[matrix.length][matrix.length];
+        for (int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < matrix[0].length; j++){
+                temp[j][matrix.length - i -1] = matrix[i][j];
+            }
+        }
+
+
+        for (int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < matrix.length; j++){
+                matrix[i][j] = temp[i][j];
+            }
+        }
+
+    }
+}
+
+/*
+Note:
+
+(Attention: we need to declare a new array to store the temp data while changing the original array, BUT we should create a null new array INSTEAD OF pass a reference to the new temp array(because the original array will automatically be changed when we just adding data to temp array.) )
+
+1.	“Declaring 2D Array”:
+   // Defined a 2D array with specific value:
+      int[][] arr = {{1,2,3},
+                     {4,5,6}};
+
+   // Defined a null 2D array:
+      int[][] arr = [length][width];
+
+*/
