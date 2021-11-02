@@ -1,0 +1,64 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<Integer> combination = new ArrayList<Integer>();
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        
+        for(int i = 0; i < nums.length; i++){
+            combination.add(nums[i]);
+        }
+        
+        permutations(nums, combination, ans, 0);
+        return ans;
+    }
+    
+
+
+    public void permutations(int[] nums, List<Integer> combination, List<List<Integer>> ans, int index){
+        if (index == nums.length){
+            ans.add(new ArrayList<Integer>(combination));
+            return;
+        }
+        for (int i = index; i < nums.length; i++){
+            Collections.swap(combination, index, i);
+            permutations(nums, combination, ans, index + 1);
+            Collections.swap(combination, index, i);
+        }
+    }
+
+}
+
+/*
+Note:
+
+(1.	Using “For loop + Recursion” when we want to get all the Permutations.
+(2.	Using “Recursion” when we want to get all the combinations.
+(3.	Using ” Backtracking” when we want to get particular combinations of all.
+
+1.	“Iterating a list”: The following are equivalent ways to iterate over a list:
+
+        for (String i : myList) {
+
+             System.out.println(i);
+        }
+
+   // equivalent to:
+
+
+        for (int i = 0; i < myList.size(); i++) {
+            System.out.println(myList.get(i));
+        }
+        
+   // equivalent to:
+
+        while (it.hasNext()) {
+ 
+            // Print all elements of List
+            System.out.println(it.next());
+        }
+
+2.	“Collections.swap(List list, int i, int j)”: The swap() method of java.util.Collections class is used to swap the elements at the specified positions in the specified list. 
+If the specified positions are equal, invoking this method leaves the list unchanged.
+     Collections.swap(combination, index, i);
+3.	“Permutation”: Using “For loop + Recursion”
+
+*/
