@@ -1,0 +1,62 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        for (int i = 0; i < strs.length; i++){
+            char[] cha = strs[i].toCharArray();
+            Arrays.sort(cha);
+            String key = String.valueOf(cha);
+            if (map.containsKey(key)){
+                List<String> lst = map.get(key);
+                lst.add(strs[i]);
+                map.put(key, lst);
+            } else{
+                List<String> lst = new ArrayList<String>();
+                lst.add(strs[i]);
+                map.put(key, lst);
+            }
+
+        }
+        return new ArrayList<List<String>>(map.values());
+    }
+}
+
+/
+Note:
+
+49. Group Anagrams
+(1. Using HashMap when we want to group items together / store items with “String” as key.
+2. Using HashSet when we just want to know if particular item exist quickly.
+3. Using List to store item with “index” as key)
+
+1.	“String.valueOf(char);“: convert char array / char to string.
+	    
+      char[] chararr1 = new char[] { 't', 'u', 't' };
+      String str1 = String.valueOf(chararr1);
+
+2.	“Hash_Map.values()”: Return all the values of map(without key).
+
+      // Mapping int values to string keys
+        hash_map.put("Geeks", 10);
+        hash_map.put("4", 15);
+        hash_map.put("Geeks", 20);
+        hash_map.put("Welcomes", 25);
+        hash_map.put("You", 30);
+  
+      // Displaying the HashMap(includes key)
+        System.out.println("Initial Mappings are: " + hash_map);
+  
+      // Using values() to get the set view of values(without key)
+        System.out.println("The collection is: " + hash_map.values());
+
+      Output:
+        Initial Mappings are: {4=15, Geeks=20, You=30, Welcomes=25}
+        The collection is: [15, 20, 30, 25]
+
+3.	“map.getOrDefault(Object key, defaultValue);”: to get the value of HashMap with specified key. 
+    If no value is mapped with the provided key then the default value is returned.
+    
+      HashMap: {a=100, b=200, c=300, d=400}
+      int k = map.getOrDefault("y", 500);
+      Returned Value: 500
+
+/
