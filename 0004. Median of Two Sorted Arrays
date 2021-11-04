@@ -20,10 +20,15 @@ class Solution {
 
 /*
 Note:
+
+(Arrays. sort(Object[]) is based on the TimSort algorithm, time complexity is O(n log(n)).)
+
 1.	“Arrays.sort(arr)”: sort the array in a non-decreasing order.
         for(int i=0; i<n; i++){
             nums1[m+i] = nums2[i];
         }
         Arrays.sort(nums1);
+        
 2.	“Arrays.sort(arr, Collections.reverseOrder());”:sort the array in a decreasing order.
+
 */
