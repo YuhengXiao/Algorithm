@@ -1,0 +1,42 @@
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int[][] minsum = new int[grid.length][grid[0].length];
+        minsum[0][0] = grid[0][0];
+        for (int i = 1; i < grid.length; i++){
+            minsum[i][0] = minsum[i - 1][0] + grid[i][0];
+        }
+        for(int j = 1; j < grid[0].length; j++){
+            minsum[0][j] = minsum[0][j - 1] + grid[0][j];
+        }
+        for(int i = 1; i < grid.length; i++){
+            for (int j = 1; j < grid[0].length; j++){
+                if (minsum[i - 1][j] < minsum[i][j - 1]){
+                    minsum[i][j] = minsum[i - 1][j] + grid[i][j];
+                } else{
+                    minsum[i][j] = minsum[i][j - 1] + grid[i][j];
+                }
+                
+            }
+        }
+        return minsum[grid.length - 1][grid[0].length - 1];
+        
+    }
+}
+
+/*
+Note:
+
+(Using Dynamic Programming)
+
+Value functions of Q64:
+When i > 0 and j = 0: dp[i][0] = dp[i−1][0] + grid[i][0]
+When i = 0 and j > 0: dp[0][j] = dp[0][j−1] + grid[0][j]
+When i > 0 and j > 0: dp[i][j] = min( dp[i−1][j] ,dp[i][j−1] ) + grid[i][j]
+
+Explanation: The minimum sum of all numbers along its path to reach the “current locations” equals to the sum of its “left location‘s minimum sum of all numbers along its path to reach it” and its “upper location‘s minimum sum of all numbers along its path to reach it”.
+
+*”Boundary condition”: 
+1. we set leftmost column and upmost row separately.
+2. We start from dp[1][1] instead of dp[0][0]
+
+*/
