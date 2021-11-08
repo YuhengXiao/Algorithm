@@ -1,0 +1,47 @@
+class Solution {
+    public int climbStairs(int n) {
+        if (n == 1){
+            return 1;
+        }
+        if (n == 2){
+            return 2;
+        }
+        int subfirst = 1;
+        int subsecond = 2;
+        int upper = 3;
+        for (int i = 3; i <= n; i++){
+            upper = subsecond + subfirst;
+            subfirst = subsecond;
+            subsecond = upper;
+        }
+        return upper;
+    }
+}
+
+/*
+Note:
+
+(1. Dynamic Programming + Rolling array.
+2. We can use “Rolling array” to reduce “Space complexity” when are in a unidimensional Dynamic Programming or we just need to store limited temporary variables to get the result.)
+
+Value functions of Q70: F ( x ) = f ( x – 1 ) + f ( x – 2 )
+
+Explanation: All the possible unique way to reach the “current stair” equals to the sum of its “1 step lower stair‘s all possible unique way” and its “2 step lower stair‘s all possible unique way”.
+*”Boundary condition”: 
+1. We return 1 if the first stair is the top.
+2. We return 2 if the second stair is the top.  
+3. We start from third stair instead from first or second stair.
+
+“Rolling array”: using the “rolling array” to reduce “Space complexity” when are in a unidimensional Dynamic Programming or we just need to store limited temporary variables to get the result.
+
+        int subfirst = 1;
+        int subsecond = 2;
+        int upper = 3;
+        for (int i = 3; i <= n; i++){
+            upper = subsecond + subfirst;
+            subfirst = subsecond;
+            subsecond = upper;
+        }
+        return upper;
+
+*/
