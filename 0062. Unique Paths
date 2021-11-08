@@ -26,6 +26,9 @@ Value functions of Q62: F ( i , j) = F ( i – 1 , j ) + F ( i , j – 1 )
 
 Explanation: All the possible unique way to reach the “current locations” equals to the sum of its “left location‘s all possible unique way” and its “upper location‘s all possible unique way”.
 
-*”Boundary condition”: we set leftmost column and upmost row to 1, because there’s only on path to reach the location on the boundary.
+*”Boundary condition”:
+1. We set leftmost column and upmost row to 1, because there’s only on path to reach the location on the boundary.
+2. We start from dp[1][1] instead of dp[0][0]
+
 
 */
