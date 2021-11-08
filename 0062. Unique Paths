@@ -1,0 +1,31 @@
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int[][] paths = new int[m][n];
+        for (int i = 0; i < m; i++){
+            paths[i][0] = 1;
+        }
+        for (int j = 0; j < n; j++){
+            paths[0][j] = 1;
+        }
+        for (int i = 1; i < m; i++){
+            for (int j = 1; j < n; j++){
+                paths[i][j] = paths[i - 1][j] + paths[i][j - 1];
+            }
+        }
+        return paths[m - 1][n - 1];
+    }
+}
+
+/*
+Note:
+
+(1.	Using Dynamic programming if a problem can be solved optimally by breaking it into sub-problems and then recursively finding the optimal solutions to the sub-problems.
+(2.	Solving “boundary condition” of Dynamic programming by passing particular value into variables of “boundary” before call the value function.)
+
+Value functions of Q62: F ( i , j) = F ( i – 1 , j ) + F ( i , j – 1 )
+
+Explanation: All the possible unique way to reach the “current locations” equals to the sum of its “left location‘s all possible unique way” and its “right location‘s all possible unique way”.
+
+*”Boundary condition”: we set leftmost column and upmost row to 1, because there’s only on path to reach the location on the boundary.
+
+*/
