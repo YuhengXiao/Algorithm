@@ -1,0 +1,82 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length == 0){
+            return new int [1][2];
+        }
+        Arrays.sort(intervals, new sortbyfirstindex());
+        List<int[]> ans = new ArrayList<int[]>();
+        for(int i = 0; i < intervals.length; i++){
+            int L = intervals[i][0];
+            int R = intervals[i][1];
+            if (ans.size() == 0 || ans.get(ans.size() - 1)[1] < L){
+                ans.add(intervals[i]);
+            } 
+            else{
+                if (ans.get(ans.size() - 1)[1] < R){
+                    ans.get(ans.size() - 1)[1] = R;
+                }
+            }
+        }
+        return ans.toArray(new int[ans.size()][2]);
+    }
+}
+
+class sortbyfirstindex implements Comparator<int[]>{
+    public int compare(int[] a, int[]b){
+        return a[0] - b[0];
+    }
+}
+
+/*
+Note:
+
+(1.	Using “Comparator interface” to sort an array by our own defined criteria.
+(2.	Using “List Interface” if we don’t know the final size of the array, because we cannot define an array without a specific size. For instance, if we need to return a 2D-array but we don’t know the final size of the 2D-array, then we can define a 1D-list to store temporary values. Finally, using “.toArray()” to convert 1D-list to 2D-array.)
+
+1.	 “Comparator interface”: when we are implementing “Arrays.sort()”:
+we can declare our own defined sort criteria with the help of the Comparator interface (defining a new class outside of main class.).
+This method returns -1, 0, or 1 to say if it is less than, equal, or greater to the other. 
+It uses this result to then determine if they should be swapped for their sort (we need to return their difference instead of returning the bigger one).
+
+    Arrays.sort(intervals, new sortbyfirstindex());
+    class sortbyfirstindex implements Comparator<int[]>{
+       public int compare(int[] a, int[]b){
+           return a[0] - b[0];
+       }
+    }
+
+    class Sortbyname implements Comparator<Student> {
+       // Used for sorting in ascending order of
+       // name
+       public int compare(Student a, Student b)
+       {
+           return a.name.compareTo(b.name);
+       }
+    }
+
+2.	“.toArray()”: converting a List of interface to an array(toCharArray(): converting a string to an array).
+
+Approach 1: converting a 1D-List to an array by using “.toArray()”:
+        List<Integer> al = new ArrayList<Integer>();  
+        Object[] objects = al.toArray();
+
+Approach 2: converting a 1D-List to an array without using “.toArray()”:
+
+        List<Integer> al = new ArrayList<Integer>();  
+        Integer[] arr = new Integer[al.size()];
+          for (int i = 0; i < al.size(); i++)
+            arr[i] = al.get(i);
+
+Approach 3: converting a 2D-List to an array using “.toArray()”:
+            ans.toArray(new int[ans.size()][2]);
+
+Approach 3: converting a 2D-List to an array without using “.toArray()”:
+        int[][]result = new int[ans.size()][2];
+        for(int i = 0; i < result.length; i++){
+            for(int j =0; j < 2; j++){
+                result[i][j] = ans.get(i)[j];
+            }
+        }
+        return result;
+
+*/
