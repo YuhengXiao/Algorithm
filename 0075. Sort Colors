@@ -1,0 +1,57 @@
+class Solution {
+    public void sortColors(int[] nums) {
+        int left = -1;
+        int right = nums.length;
+        int pivot = 0;
+        while(pivot < right){
+            if (nums[pivot] < 1){
+                left++;
+                swap(left, pivot, nums);
+                pivot++;
+            } else if(nums[pivot] == 1){
+                pivot++;
+            } else if(nums[pivot] > 1){
+                right--;
+                swap(right, pivot, nums);
+            }
+        }
+    }
+
+    public void swap(int a, int b, int[]arr){
+        int temp = arr[b];
+        arr[b] = arr[a];
+        arr[a] = temp;
+    }
+
+}
+
+/*
+Note:
+
+(1.	Using “Quick Sort—Pivot” if we just want to traverse through once in Partitioning Sorting Questions(there’re just 3 kinds of values in the array).
+(2.	“mid-Pivot” need to add by one after comparing with “left-pivot”.
+(3.	“mid-Pivot” CANNOT add by one after comparing with “right-pivot”.)
+
+1.	“Quick sort”: 
+(1)	pick first element as “mid-Pivot” and “mid-pivot”(set -1 as index).
+(2)	pick last element as pivot (set the length of array as index).
+(3)	“mid-Pivot” need to add by one after comparing with “left-pivot”.(We already scanned the “left-pivot”, we don’t need to compare “mid-pivot” with its “new value” again.)
+(4)	“mid-Pivot” CANNOT add by one after comparing with “right-pivot”. (We haven’t scanned the “right-pivot”, so we need to compare “mid-pivot” with its “new value” again instead of moving on directly.)
+
+        int left = -1;
+        int right = nums.length;
+        int pivot = 0;
+        while(pivot < right){
+            if (nums[pivot] < 1){
+                left++;
+                swap(left, pivot, nums);
+                pivot++;
+            } else if(nums[pivot] == 1){
+                pivot++;
+            } else if(nums[pivot] > 1){
+                right--;
+                swap(right, pivot, nums);
+            }
+        }
+
+*/
