@@ -90,6 +90,8 @@ Note:
         1.	N stands for “for loop”
         2.	N factorial stand for “recursions”
 
+    (5)	Space complexity: O(N): 
+        we need make room for each “recursion”.
 
 https://www.youtube.com/watch?v=KukNnoN-SoY&t=792s
 */
