@@ -33,8 +33,7 @@ class Solution {
 /*
 Note:
 (1.	Using “For loop + Recursion + visiting information(boolean[] visited)” when we want to get all the Permutations.
-(2.	Using “Recursion” when we want to get all the combinations.
-(3.	Using ” Backtracking” when we want to get particular combinations of all.
+(2.	Q78 is about the Combination.
 
 1.	“Iterating a list”: The following are equivalent ways to iterate over a list:
 
