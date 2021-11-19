@@ -32,7 +32,7 @@ class Solution {
 
 /*
 Note:
-(1.	Using backtracking: “For loop + Recursion + visiting information(boolean[] visited)” when we want to get all the Permutations.
+(1.	(1.	Using backtracking: “If return + For loop + Recursion + visiting information(boolean[] visited)” when we want to get all the Permutations.
 (2.	Q78 is about the Combination.
 
 1.	“Iterating a list”: The following are equivalent ways to iterate over a list:
@@ -61,17 +61,18 @@ Note:
     Collections.swap(combination, index, i);
 
 3.	“Permutation”: Using “For loop + Recursion”:
-  (1)	“For loop” iterates all the valid indexes we can select of the current “node” (we will just select one possible index and do the “recursion” at a time);
+  (1)  “If return”: We can check the Fig of backtracking to tell when we need to add the answer, in this case, the condition is when the size equals to the length of array.
+  (2)	“For loop” iterates all the valid indexes we can select of the current “node” (we will just select one possible index and do the “recursion” at a time);
             for (int i = 0; i < nums.length; i++){
                 if (visited[i] == true){
                    continue;
             }
-  (2)	“Recursion” is telling the “For loop of the next sub-node (next row)” which indexes are valid.
+  (3)	“Recursion” is telling the “For loop of the next sub-node (next row)” which indexes are valid.
                    backtracking(res, temp, visited, nums);
         We need to remove the element we just added into the List to make room for the next possible element.
                    temp.remove(temp.size() - 1);
 
-   (3)	“Visiting information” are required because the same index may be iterated repeatedly in other “for loop with same depth”. not like “combination” will just occur once in the “for loop with same depth”.
+  (4)	“Visiting information” are required because the same index may be iterated repeatedly in other “for loop with same depth”. not like “combination” will just occur once in the “for loop with same depth”.
          We need to update the visited array after adding or removing, that’s why “recursion” can tell the “For loop of the next sub-node (next row)” which indexes are valid.
 
         
@@ -86,11 +87,11 @@ Note:
             visited[i] = false;
         }
 
-    (4)	Time complexity: O(N * N!)
+  (5)	Time complexity: O(N * N!)
         1.	N stands for “for loop”
         2.	N factorial stand for “recursions”
 
-    (5)	Space complexity: O(N): 
+  (6)	Space complexity: O(N): 
         we need make room for each “recursion”.
 
 https://www.youtube.com/watch?v=KukNnoN-SoY&t=792s
