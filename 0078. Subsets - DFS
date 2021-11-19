@@ -1,0 +1,53 @@
+class Solution {
+    List<List<Integer>> ans = new ArrayList<List<Integer>>();
+    List<Integer> temp = new ArrayList<Integer>();
+
+    public List<List<Integer>> subsets(int[] nums) {
+        dfs(nums, 0);
+        return ans;
+    }
+
+    public void dfs( int[] nums, int index){
+        if (index == nums.length){
+            ans.add(new ArrayList<Integer>(temp));
+            return;
+        }
+        temp.add(nums[index]);
+        dfs(nums, index + 1);
+        temp.remove(temp.size() - 1);
+        dfs(nums, index + 1);
+        
+    }
+
+}
+
+/*
+Note:
+
+(1.	Approach 1: Using Backtracking: “If return + For loop + Recursion + particular condition(the length of each possible result))” when we want to get all the combinations.
+(2.	Approach 2(First choice in combination problem): Using DFS(Depth First Search): “If return + Recursion + remove + Recursion” when we want to get all the combinations.
+(3.	Q46 is about permutation.)
+
+2.	“Approach 2: Using DFS(Depth First Search) to get all the combinations:
+(1)	“If return”: We can check the Fig of backtracking to tell when we need to add the answer, in this case, the condition is when the size equals to each length of array.
+        if (index == nums.length){
+            ans.add(new ArrayList<Integer>(temp));
+            return;
+        }
+(2)	“Particular condition”: we don’t need to consider about abandonment this time, because every possible result are both need to be added into answer list.
+(3)	“For loop”: we don’t need “for loop” to consider valid indexes this time, because each sub-node just have two possibilities, appear or not appear.
+(4)	“Recursion” is telling the “For loop of the next sub-node (next row)” which indexes are valid.
+         dfs(nums, index + 1);
+    We need to remove the element we just added into the List to consider the second condition that current node is not to include.
+        temp.remove(temp.size() - 1);
+(5)	“Visiting information” are not required. 
+    How does “recursion” tell the “sub-node” which indexes are valid without updating visited array after adding or removing every time?
+    There are only two possibilities for each node(appear or not), so we don’t need to worry about which nodes are valid, because we add a new node in each sub-node at a time, there are not duplicate results.
+(6)	Time complexity: O(N * 2^n)
+    O(n×2n)。一共 2^n2n 个状态，每种状态需要 O(n)O(n) 的时间来构造子集
+(7)	Space complexity: O(N)
+    we need make room for each “recursion”.
+
+https://leetcode-cn.com/problems/permutations/solution/quan-pai-lie-by-leetcode-solution-2/
+
+*/
