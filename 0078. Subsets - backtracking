@@ -1,0 +1,58 @@
+class Solution {
+    List<List<Integer>> ans = new ArrayList<List<Integer>>();
+    List<Integer> temp = new ArrayList<Integer>();
+
+    public List<List<Integer>> subsets(int[] nums) {
+        for (int i = 0; i <= nums.length; i++){
+            backtracking(nums, i, 0);
+        }
+        return ans;
+    }
+
+    public void backtracking(int[]nums, int length, int index){
+        if (temp.size() == length){
+            ans.add(new ArrayList<Integer>(temp));
+            return;
+        }
+        for (int i = index; i < nums.length; i++){
+            temp.add(nums[i]);
+            backtracking(nums, length, i + 1);
+            temp.remove(temp.size() - 1);
+        }
+
+    }
+}
+
+/*
+Note:
+
+(1.	Approach 1: Using Backtracking: “If return + For loop + Recursion + particular condition(the length of each possible result))” when we want to get all the combinations.
+(2.	Approach 2(First choice in combination problem): Using DFS(Depth First Search): “If return + Recursion + remove + Recursion” when we want to get all the combinations.
+(3.	Q46 is about permutation.)
+
+1.	“Approach 1: Using Backtracking to get all the combinations:
+(1)	“If return”: We can check the Fig of backtracking to tell when we need to add the answer, in this case, the condition is when the size equals to each length in the “Particular condition”.
+(2)	“Particular condition”: particular condition is for abandoning some solution candidates, in this case, we choose each possible lengths as our criteria.
+        for (int i = 0; i <= nums.length; i++){
+            backtracking(nums, i, 0);
+        }
+(3)	“For loop” iterates all the valid indexes we can select of the current “node” (we will just select one possible index and do the “recursion” at a time);
+         for (int i = index; i < nums.length; i++){
+(4)	“Recursion” is telling the “For loop of the next sub-node (next row)” which indexes are valid.
+             backtracking(nums, length, i + 1);
+    We need to remove the element we just added into the List to make room for the next possible element.
+            temp.remove(temp.size() - 1);
+(5)	“Visiting information” are not required. 
+    How does “recursion” tell the “For loop of the next sub-node (next row)” which indexes are valid without updating visited array after adding or removing every time?
+    Because the same index will not be iterated repeatedly in other “for loop with same depth” like “permutation”, so we can just begin at the “i + 1” in other “for loop with same depth” to avoid duplicate combinations we got before.
+        if (temp.size() == length){
+            ans.add(new ArrayList<Integer>(temp));
+            return;
+        }
+        for (int i = index; i < nums.length; i++){
+            temp.add(nums[i]);
+            backtracking(nums, length, i + 1);
+            temp.remove(temp.size() - 1);
+        }
+
+*/
