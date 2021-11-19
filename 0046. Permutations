@@ -1,27 +1,30 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<Integer> combination = new ArrayList<Integer>();
-        List<List<Integer>> ans = new ArrayList<List<Integer>>();
-        
-        for(int i = 0; i < nums.length; i++){
-            combination.add(nums[i]);
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<Integer> temp  = new ArrayList<Integer>();
+        if (nums.length == 0 ){
+            return res;
         }
-        
-        permutations(nums, combination, ans, 0);
-        return ans;
+        boolean [] visited = new boolean[nums.length];
+        backtracking(res, temp, visited, nums);
+        return res;
     }
-    
 
-
-    public void permutations(int[] nums, List<Integer> combination, List<List<Integer>> ans, int index){
-        if (index == nums.length){
-            ans.add(new ArrayList<Integer>(combination));
+    public void backtracking(List<List<Integer>> res, List<Integer> temp, boolean[] visited, int[] nums){
+        if (temp.size() == nums.length){
+            res.add(new ArrayList<Integer>(temp));
             return;
         }
-        for (int i = index; i < nums.length; i++){
-            Collections.swap(combination, index, i);
-            permutations(nums, combination, ans, index + 1);
-            Collections.swap(combination, index, i);
+
+        for (int i = 0; i < nums.length; i++){
+            if (visited[i] == true){
+                continue;
+            }
+            temp.add(nums[i]);
+            visited[i] = true;
+            backtracking(res, temp, visited, nums);
+            temp.remove(temp.size() - 1);
+            visited[i] = false;
         }
     }
 
@@ -30,7 +33,8 @@ class Solution {
 /*
 Note:
 
-(1.	Using “For loop + Recursion” when we want to get all the Permutations.
+(1.	Using “For loop + Recursion + visiting information” when we want to get all the Permutations.
+“For loop” is looking for all the possible permutations of each “node”, “Recursion” is telling “For loop” which index to begin looking in the next “sub-node” (next row). 
 (2.	Using “Recursion” when we want to get all the combinations.
 (3.	Using ” Backtracking” when we want to get particular combinations of all.
 
@@ -41,14 +45,14 @@ Note:
              System.out.println(i);
         }
 
-   // equivalent to:
+    // equivalent to:
 
 
         for (int i = 0; i < myList.size(); i++) {
             System.out.println(myList.get(i));
         }
         
-   // equivalent to:
+    // equivalent to:
 
         while (it.hasNext()) {
  
@@ -56,9 +60,20 @@ Note:
             System.out.println(it.next());
         }
 
-2.	“Collections.swap(List list, int i, int j)”: The swap() method of java.util.Collections class is used to swap the elements at the specified positions in the specified list. 
-If the specified positions are equal, invoking this method leaves the list unchanged.
+2.	“Collections.swap(List list, int i, int j)”: The swap() method of java.util.Collections class is used to swap the elements at the specified positions in the specified list. If the specified positions are equal, invoking this method leaves the list unchanged.
      Collections.swap(combination, index, i);
-3.	“Permutation”: Using “For loop + Recursion”
+     
+3.	“Permutation”: Using “For loop + Recursion”(We need the help of an array to tell us which node to begin in the “sub-node”, because “permutation” are not like “combination” which don’t need to consider the order.)
+        for (int i = 0; i < nums.length; i++){
+            if (visited[i] == true){
+                continue;
+            }
+            temp.add(nums[i]);
+            visited[i] = true;
+            backtracking(res, temp, visited, nums);
+            temp.remove(temp.size() - 1);
+            visited[i] = false;
+        }
+
 
 */
