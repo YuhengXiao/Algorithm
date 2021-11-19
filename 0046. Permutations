@@ -86,5 +86,10 @@ Note:
             visited[i] = false;
         }
 
+    (4)	Time complexity: O(N * N!)
+        1.	N stands for “for loop”
+        2.	N factorial stand for “recursions”
+
+
 https://www.youtube.com/watch?v=KukNnoN-SoY&t=792s
 */
