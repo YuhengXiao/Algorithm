@@ -32,7 +32,6 @@ class Solution {
 
 /*
 Note:
-
 (1.	Using “For loop + Recursion + visiting information” when we want to get all the Permutations.
 (2.	Using “Recursion” when we want to get all the combinations.
 (3.	Using ” Backtracking” when we want to get particular combinations of all.
@@ -44,14 +43,14 @@ Note:
              System.out.println(i);
         }
 
-// equivalent to:
+   // equivalent to:
 
 
         for (int i = 0; i < myList.size(); i++) {
             System.out.println(myList.get(i));
         }
         
- // equivalent to:
+   // equivalent to:
 
         while (it.hasNext()) {
  
@@ -60,12 +59,15 @@ Note:
         }
 
 2.	“Collections.swap(List list, int i, int j)”: The swap() method of java.util.Collections class is used to swap the elements at the specified positions in the specified list. If the specified positions are equal, invoking this method leaves the list unchanged.
-     Collections.swap(combination, index, i);
-     
+    Collections.swap(combination, index, i);
+
 3.	“Permutation”: Using “For loop + Recursion”:
-(1)	“For loop” iterates all the valid possibilities of the first index we can select of the current “node”;
-(2)	“Recursion” is telling the “For loop of the next sub-node (next row)” which indexes are valid.
-(3)	“Visiting information” are required because the same index may be iterated repeatedly in another “for loop” not like “combination” will just occur in one “for loop”.
+   (1)	“For loop” iterates all the valid indexes we can select of the current “node” (we will just select one possible index and do the “recursion” at a time);
+   (2)	“Recursion” is telling the “For loop of the next sub-node (next row)” which indexes are valid.
+         We need to remove the element we just added into the List to make room for the next possible element.
+   (3)	“Visiting information” are required because the same index may be iterated repeatedly in another “for loop” not like “combination” will just occur in one “for loop”.
+         We need to set the visited array after adding or removing, that’s why “recursion” can tell the “For loop of the next sub-node (next row)” which indexes are valid.
+        
         for (int i = 0; i < nums.length; i++){
             if (visited[i] == true){
                 continue;
