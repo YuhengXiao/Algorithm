@@ -1,0 +1,46 @@
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        int width = board.length, height = board[0].length;
+        boolean visited[][] = new boolean[width][height];
+        for (int i = 0; i < width; i++){
+            for (int j = 0; j < height; j++){
+                boolean result = check(i, j, visited, 0, word, board);
+                if (result == true){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean check(int i, int j, boolean visited[][], int index, String word, char[][] board){
+        if (board[i][j] != word.charAt(index)){
+            return false;
+        }
+        if (index == word.length() - 1){
+            return true;
+        }
+        visited[i][j] = true;
+        int[][] next = {{0,1}, {0, -1}, {-1, 0}, {1, 0}};
+        for (int[]add : next){
+            int nexti = i + add[0];
+            int nextj = j + add[1];
+            if (nexti >=0 && nexti < board.length && nextj >= 0 && nextj < board[0].length){
+                if (visited[nexti][nextj] == false){
+                    boolean temp_result = check(nexti, nextj, visited, index + 1, word, board);
+                    if (temp_result == true){
+                        return true;
+                    }
+                }
+            }
+        }
+        visited[i][j] = false;
+        return false;
+    }
+
+}
+
+/*
+Notes:
+
+(Using backtracking + dynamic programming to solve complicated “grid problems(with more conditions)”)
+*/
