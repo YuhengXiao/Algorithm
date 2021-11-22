@@ -1,0 +1,25 @@
+class Solution {
+    public int numTrees(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        if (n > 1){
+            for (int root = 2; root <= n; root++){
+                for (int num_left = 0; num_left < root; num_left++){
+                    dp[root] = dp[root] + dp[num_left] * dp[root - num_left - 1];
+                }
+            }
+        }
+        return dp[n];
+    }
+}
+
+/*
+Notes:
+
+(Using dynamic programming)
+
+1.	Left node: In the binary tree, each left node is less than its parent.
+2.	Right node: In the binary tree, each right node is larger than its parent.
+
+*/
