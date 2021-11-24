@@ -1,0 +1,62 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        if (root == null){
+            return ans;
+        }
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while(queue.isEmpty() == false){
+            int levelsize = queue.size();
+            List<Integer> level = new ArrayList<Integer>();
+            for (int i = 1; i <= levelsize; i ++){
+                TreeNode current = queue.remove();
+                level.add(current.val);
+                if (current.left != null){
+                    queue.add(current.left);
+                }
+                if (current.right != null){
+                    queue.add(current.right);
+                }
+            }
+            ans.add(level);
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(DFS(Depth First Search): returning the level order traversal.)
+
+1.	DFS(Depth First Search): traversing in the level order.
+(1)	Step1: Assigning a “queue”, and using a “While loop” to do the DFS.
+(2)	Step2: Putting all the value on same level into the queue.
+(3)	Step3: Using a “for loop” to iterate all the value in the queue. For each value, removing the value and adding its child immediately.
+(4)	Step4: Ending the “While” if there is no element in the queue anymore.
+
+2.	Queue: 
+(1)	add() - Inserts the specified element into the queue. If the task is successful, add() returns true, if not it throws an exception.
+(2)	offer() - Inserts the specified element into the queue. If the task is successful, offer() returns true, if not it returns false.
+(3)	element() - Returns the head of the queue. Throws an exception if the queue is empty.
+(4)	peek() - Returns the head of the queue. Returns null if the queue is empty.
+(5)	remove() - Returns and removes the head of the queue. Throws an exception if the queue is empty.
+(6)	poll() - Returns and removes the head of the queue. Returns null if the queue is empty.
+
+*/
