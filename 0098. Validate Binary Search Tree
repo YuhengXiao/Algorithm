@@ -14,46 +14,30 @@
  * }
  */
 class Solution {
+    int ans = -1;
     public boolean isValidBST(TreeNode root) {
-        int result = -1;
-        iterator(root, result);
-        if (result == -1){
+        Deque<TreeNode> stack = new LinkedList<TreeNode>();
+        iterator(root, stack);
+        if (ans == -1){
             return true;
         }
         return false;
     }
 
-    public void iterator(TreeNode root, int result){
+    public void iterator(TreeNode root, Deque<TreeNode> stack){
         if (root == null){
             return;
         }
-        if (check(root) == false){
-            result = 1;
+        iterator(root.left, stack);
+        if (stack.isEmpty()){
+            stack.push(root);
+        } else if (root != null && stack.peek().val >= root.val){
+            ans = 1;
         }
-        iterator(root.left, result);
-        iterator(root.right, result);
-    }
-
-    public boolean check(TreeNode root){
-        if (root.left != null && root.right != null){
-            if (root.val >= root.left.val && root.val <= root.right.val){
-                 return true;
-            }
+        if (root != null){
+            stack.push(root);
         }
-        else if (root.left != null && root.right == null){
-            if (root.val >= root.left.val){
-                return true;
-            }
-        }
-        else if (root.left == null && root.right != null){
-            if (root.val <= root.right.val){
-                return true;
-            }
-        }
-        else if (root.left == null && root.right == null){
-            return true;
-        }
-        return false;
+        iterator(root.right, stack);
     }
 }
 
