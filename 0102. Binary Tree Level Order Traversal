@@ -47,9 +47,10 @@ Notes:
 
 1.	DFS(Depth First Search): traversing in the level order.
 (1)	Step1: Assigning a “queue”, and using a “While loop” to do the DFS.
-(2)	Step2: Putting all the value on same level into the queue.
-(3)	Step3: Using a “for loop” to iterate all the value in the queue. For each value, removing the value and adding its child immediately.
-(4)	Step4: Ending the “While” if there is no element in the queue anymore.
+(2)	Step2: Adding the root into the queue.
+(3)	Step3: Using a “for loop” to iterate all the value in the queue. For each value, removing the value and adding its child immediately. 
+(4)	Step4: After the “for loop”, we had already put all the values on same level into the queue, so we can output our temporary result.
+(5)	Step5: Ending the “While” if there is no element in the queue anymore.
 
 2.	Queue: 
 (1)	add() - Inserts the specified element into the queue. If the task is successful, add() returns true, if not it throws an exception.
