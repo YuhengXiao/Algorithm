@@ -44,10 +44,12 @@ class Solution {
 /*
 Notes:
 
-(In binary tree, using “In-order traversal” we can get an ascending order. With this property, we can tell if a tree is a valid binary tree by using a stack.)
+(In binary tree, using “In-order traversal” we can get an ascending order. With this property, we can tell if a binary tree is a BST(Binary Search Tree) by using a stack.)
 
-1.	Left node: In the binary tree, each left node is less than its parent.
-2.	Right node: In the binary tree, each right node is larger than its parent.
-3.	Parent node: In the binary tree, parent node is larger than any nodes of its left branch, is smaller than any nodes of its right branch.
+1.	BST(Binary Search Tree): BST is a specific kind of binary tree, must meet all the requirements below(ordinary binary tree doesn’t have these properties.):
+(1)	Left node: In the binary tree, each left node is less than its parent.
+(2)	Right node: In the binary tree, each right node is larger than its parent.
+(3)	Parent node: In the binary tree, parent node is larger than any nodes of its left branch, is smaller than any nodes of its right branch.
+
 
 */
