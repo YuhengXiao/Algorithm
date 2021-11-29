@@ -1,0 +1,24 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int ans = 0;
+        if (prices.length < 2){
+            return ans;
+        }
+        int buy = prices[0];
+        for (int sell = 1; sell < prices.length; sell++){
+            if (prices[sell] < buy){
+                buy = prices[sell];
+            }
+            if (prices[sell] - buy > ans){
+                ans = prices[sell] - buy;
+            }
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Using two pointers when we want to get the maximum difference among all the elements)
+*/
