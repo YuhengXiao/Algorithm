@@ -19,7 +19,5 @@ Notes:
 
 (Using dynamic programming)
 
-1.	Left node: In the binary tree, each left node is less than its parent.
-2.	Right node: In the binary tree, each right node is larger than its parent.
 
 */
