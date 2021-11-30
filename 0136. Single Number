@@ -1,0 +1,21 @@
+class Solution {
+    public int singleNumber(int[] nums) {
+        HashMap<Integer, Integer> hashmap = new HashMap<Integer, Integer>();
+        for (int num : nums){
+                hashmap.put(num, hashmap.getOrDefault(num, 0) + 1);
+        }
+        for (int num : nums){
+            if (hashmap.get(num) == 1){
+                return num;
+            }
+        }
+        return 0;
+    }
+}
+
+/
+Notes:
+
+(Using HashMap to count numbers (includes duplicates), HashMap doesn’t allow duplicates just like HashSet, 
+but we can assign duplicates as our key and use its value to represent the number of duplicate.)
+/
