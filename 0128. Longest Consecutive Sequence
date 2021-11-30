@@ -1,0 +1,36 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        HashSet<Integer> hashset = new HashSet<Integer>();
+        int max = 0;
+
+        for (int num : nums){
+            hashset.add(num);
+        }
+
+        for (int num : hashset){
+            if (!hashset.contains(num - 1)){
+                int count = 1;
+                while(hashset.contains(num + 1)){
+                    count++;
+                    num = num + 1;
+                }
+                if (count > max){
+                    max = count;
+                }
+            }
+        }
+        return max;
+    }
+}
+
+/
+Notes:
+
+(Using HashSet: removing duplicates / counting particular numbers)
+
+1. removing duplicates:
+    if (!hashset.contains(num - 1)){
+
+2. counting particular numbers;
+    while(hashset.contains(num + 1)){
+/
