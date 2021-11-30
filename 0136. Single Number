@@ -17,5 +17,5 @@ class Solution {
 Notes:
 
 (Using HashMap to count numbers (includes duplicates), HashMap doesn’t allow duplicates just like HashSet, 
-but we can assign duplicates as our key and use its value to represent the number of duplicate.)
+but we can assign duplicates as our key and use its value to represent the number of duplicates.)
 /
