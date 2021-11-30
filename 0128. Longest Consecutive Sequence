@@ -26,11 +26,7 @@ class Solution {
 /
 Notes:
 
-(Using HashSet: removing duplicates / counting particular numbers)
+(Using HashSet: counting numbers(exclude duplicates), 
+because HashSet doesn’t allow duplicates. If you try to add a duplicate element in HashSet, the old value would be overwritten.)
 
-1. removing duplicates:
-    if (!hashset.contains(num - 1)){
-
-2. counting particular numbers;
-    while(hashset.contains(num + 1)){
 /
