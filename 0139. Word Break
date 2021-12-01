@@ -1,0 +1,25 @@
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> dict = new HashSet<String>(wordDict);
+        boolean [] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        for (int i = 0; i < s.length(); i++){
+            for (int len = 1; len <= s.length(); len++){
+                if (i + len <= s.length()){
+                    if (dp[i] && dict.contains(s.substring(i, i + len))){
+                        dp[i + len] = true;
+                    }
+                } else{
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
+    }
+}
+
+/*
+Notes:
+
+(Using "HashSet and Dynamic Programming")
+*/
