@@ -1,0 +1,41 @@
+class Solution {
+    public int numIslands(char[][] grid) {
+        if (grid.length == 0 || grid[0].length == 0){
+            return 0;
+        }
+        int ans = 0;
+        for (int row = 0; row < grid.length; row++){
+            for (int column = 0; column < grid[0].length; column++){
+                if (grid[row][column] == '1'){
+                    ans++;
+                    dfs(grid, row, column);
+                }
+            }
+        }
+        return ans;
+    }
+
+    public void dfs(char[][] grid, int row, int column){
+        if (row < 0 || column < 0 || row >= grid.length || column >= grid[0].length || grid[row][column] == '0'){
+            return;
+        }
+        grid[row][column] = '0';
+        dfs(grid, row - 1, column);
+        dfs(grid, row + 1, column);
+        dfs(grid, row, column - 1);
+        dfs(grid, row, column + 1);
+    }
+
+}
+
+/*
+Notes:
+
+(Undirected Graphs: using “DFS” to find the number of “islands”. We cannot use “Dynamic Programming” because the next step doesn’t just depend on the result of last step, it depends on all the steps.)
+
+1 0 1 1 1
+1 0 1 0 1
+1 0 1 0 1
+1 1 1 0 1
+
+*/
