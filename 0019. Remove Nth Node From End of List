@@ -35,8 +35,12 @@ Note:
 
 1.	“dummy node”: In the LinkedList, we don’t need to worry about the bounds(deleting “head”) while deleting with “dummy node”. Unless, we consider about the situation might “deleting head” exclusively.
       ListNode dummy = new ListNode(0,head);
-2.	 “reference”: In JAVA, we make the new object points to the old one instead of passing the value into new one when we assign a new object to another one. Which means, even the value of old one will be changed when we are just changing the new one.
-      ListNode cur = dummy;
+2.	 “reference”: In JAVA, “=” operator means we let new variable points to the same address of old variable instead copying the value of old variable to the new variable. 
+     Which means, all the value of variables that point to same address will be altered automatically when we only modified the value of the address (changing new value to any one of variables which points to this address). 
+     However, if we just let one of variables points to a new address will not change other variables which points to its old address, because moving pointer didn’t change the value of old address. 
+         ListNode cur = dummy;
+         dummy = dummy.next;
+
 3.	“Get then length of LinkedList”: we can just use the “LinkedList.size()” to get the length of a LinkedList if we are using the “LinkedList Interface”.
       LinkedList<String> list = new LinkedList<String>();
     Unless, we need to define a function to get the length of LinkedList by ourself:
