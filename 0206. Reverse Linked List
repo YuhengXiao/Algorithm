@@ -1,0 +1,56 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+ 
+//----------------------- approach 1 (two pointers)---------------------------------
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while(curr != null){
+            ListNode temp = new ListNode(curr.val, prev);
+            prev = temp;
+            curr = curr.next;
+        }
+        return prev;
+    }
+}
+
+//------------------------- approach 2 (stack)-----------------------------------
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head == null){
+            return null;
+        }
+        Deque <ListNode> stack = new LinkedList<ListNode>();
+        ListNode cur = head;
+        while(cur != null){
+            stack.addFirst(cur);
+            cur = cur.next;
+        }
+        cur = new ListNode(stack.pop().val);
+        ListNode ans = cur;
+        while(!stack.isEmpty()){
+            cur.next = new ListNode(stack.pop().val,null);
+            cur = cur.next;
+        }
+        return ans;
+    }
+}
+
+//-------------------------------------------------------------------------------
+
+/*
+Notes:
+
+(Using “Two Pointers” to reverse linkedList.)
+*/
