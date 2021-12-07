@@ -1,0 +1,81 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode sortList(ListNode head) {
+        if (head == null){
+            return null;
+        }
+        return sortList(head, null);
+    }
+
+    public ListNode sortList(ListNode head, ListNode tail){
+        if (head.next == tail){
+            head.next = null;
+            return head;
+        }
+        ListNode fast = head, slow = head;
+        while(fast != tail){
+            fast = fast.next;
+            slow = slow.next;
+            if (fast != tail){
+                fast = fast.next;
+            }
+        }
+        ListNode mid = slow;
+        ListNode divied_unsorted_subleft = sortList(head, mid);
+        ListNode divied_unsorted_subright = sortList(mid, tail);
+        ListNode divied_sorted_sub = merge(divied_unsorted_subleft, divied_unsorted_subright);
+        return divied_sorted_sub;
+    }
+
+    public ListNode merge(ListNode subleft, ListNode subright){
+        ListNode sub_sorted = new ListNode(-1, null);
+        ListNode dummy = sub_sorted;
+        while (subleft != null && subright != null){
+            if (subleft.val <= subright.val){
+                sub_sorted.next = subleft;
+                subleft = subleft.next;
+            } else{
+                sub_sorted.next = subright;
+                subright = subright.next;
+            }
+            sub_sorted = sub_sorted.next;
+        }
+        while (subleft != null){
+            sub_sorted.next = subleft;
+            sub_sorted = sub_sorted.next;
+            subleft = subleft.next;
+        }
+        while (subright != null){
+            sub_sorted.next = subright;
+            sub_sorted = sub_sorted.next;
+            subright = subright.next;
+        }
+        return dummy.next;
+    }
+}
+
+/*
+Notes:
+(Using “Merge Sort” to sort a LinkedList.)
+
+1.	MergeSort: 
+   (1)	 Step 1: Dividing a list until there is only one element in the sublist.
+   (2)	Step 2: Merging each sublist until the new sublist contains every elements.
+   
+   https://www.youtube.com/watch?v=iMT7gTPpaqw&t=95s
+   
+2.	Codes of “Mergesort”:
+  (1)	When we using “mergesort” in Linked List: Don’t miss to set all the next of ListNodes to null when where is just one ListNode in the sublist.
+  (2)	When we using “mergesort” in Linked List: Don’t forget the end of each ListNode is its “tail” rather than “null”.
+  (3)	When we using “mergesort” in Linked List: Finding the mid ListNode by two pointers(fast one and slow one).
+
+*/
