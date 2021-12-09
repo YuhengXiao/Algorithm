@@ -1,0 +1,76 @@
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> rule = new ArrayList<List<Integer>>();
+        int[] visited = new int[numCourses];
+        for (int i = 0; i < numCourses; i++){
+            //assigning places for each courses (include courses which don't have prerequisites)
+            rule.add(new ArrayList<Integer>());
+        }
+        for (int i = 0; i < prerequisites.length; i++){
+            int course = prerequisites[i][0];
+            int requirement = prerequisites[i][1];
+            rule.get(course).add(requirement);
+        }
+        for (int i = 0; i < numCourses; i++){
+            if (dfs(i, visited, rule) == false){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean dfs(int cur, int[] visited,List<List<Integer>> rule){
+        if (visited[cur] == 1){            
+            return true;
+        }
+        if (visited[cur] == 2){ 
+            return false;
+        }
+        visited[cur] = 2;
+        for (int next : rule.get(cur)){                 
+            if(dfs(next, visited, rule) == false) {
+                return false;
+            }
+        }
+
+        visited[cur] = 1;
+        return true;
+    }
+
+}
+
+/*
+Notes:
+
+(“Topological”: Using “DFS” to find “loop” in “Oriented Graph”.)
+
+1.	“Default Value of null array”: Java set the value of null array to 0, we need to avoid using “0” as our “mark”.
+        if (visited[cur] == 1){            // 0
+            return true;
+        }
+        if (visited[cur] == 2){ 
+            return false;
+        }
+
+
+2.	 “for( : )”: The difference between “for(i=0; i<arr.length; i++)” and “for( : )” is the former can avoid “null value” but the later will throw exception.
+---------------------approach 1------------------------------------ 
+        for (int next : rule.get(cur)){                 
+            if(dfs(next, visited, rule) == false) {
+                return false;
+            }
+        }
+---------------------approach 2-----------------------------------
+        if (rule.get(cur).size() == 0){
+
+        } else{
+            for (int i = 0; i < rule.get(cur).size(); i++){
+                if(dfs(rule.get(cur).get(i), visited, rule) == false){
+                    return false;
+                    }
+            }
+        }
+
+3.	“topological”: it’s for searching in “oriented graph”.
+    https://www.youtube.com/watch?v=M6SBePBMznU
+*/
