@@ -24,7 +24,12 @@ Notes:
     public int[] twoSum(int[] nums, int target)
        return new int[0]; 
 
-4.	“iterate array”: iterate the whole array by using “for( : )”. It’s different when you iterate a HashMap(NEED ADD “HashMap.KeySet()”or “HashMap.values()”).
+4.	“iterate array”: iterate the whole array by using “for( : )” 
+    (The difference between “for(i=0; i<arr.length; i++)” and “for( : )” is the former can avoid “null value” but the later will throw exception.).
+    
+    It’s different when you iterate a HashMap(NEED ADD “HashMap.KeySet()”or “HashMap.values()”).
+
+     
      String arr[]={"hi","hello","bye"};
      for (String str : arr) {
          System.out.println(str);
