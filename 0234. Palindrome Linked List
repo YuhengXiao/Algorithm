@@ -1,0 +1,36 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        List<Integer> temp = new ArrayList<Integer>();
+        while(head != null){
+            temp.add(head.val);
+            head = head.next;
+        }
+        int left = 0;
+        int right = temp.size() - 1;
+        while(left < right && temp.get(left) == temp.get(right)){
+            left++;
+            right--;
+        }
+        if (left >= right){
+            return true;
+        } else{
+            return false;
+        }
+    }
+}
+
+/*
+Notes:
+
+(Determining if a string is a “palindrome”: using “two pointers” instead of “stack”(because the length of the string might be odd))
+*/
