@@ -1,0 +1,55 @@
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        for (int num : nums){
+            if (pq.size() < k){
+                pq.add(num);
+            } else{
+                if (num > pq.peek()){
+                    pq.remove();
+                    pq.add(num);
+                }
+            }
+        }
+        return pq.peek();
+    }
+}
+
+/*
+Notes:
+
+(Using “PriorityQueue” to find the Kth largest element in a list.)
+
+1.	“PriorityQueue”: The difference between “Queue” and “PriorityQueue” is: the order of “Queue” is First-in-First-out, but the order of “PriorityQueue” is based on ascending value of elements by default.
+
+(1)	Constructors: creating a new PriorityQueue:
+   PriorityQueue<E> pq = new PriorityQueue<E>();
+
+*: define a specified capacity and storing order PriorityQueue(the order is ascending value of elements by default, we can make its order like descending):
+
+   PriorityQueue<Integer> pq = new PriorityQueue<>(10, Collections.reverseOrder());
+
+(2)	Adding Elements:
+        pq.add("Geeks");
+        pq.add("For");
+        pq.add("Geeks");
+   Output:
+       [For, Geeks, Geeks] //NOT first-in-first-out
+
+(3)	Removing Elements:
+    remove(): Retrieves and removes the head of this queue.
+    remove(Object o): Removes a single instance of the specified element from this queue, if it is present.
+    poll(): Retrieves and removes the head of this queue, or returns null if this queue is empty.
+
+(4)	Accessing the elements:
+    peek(): Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+
+(5)	Iterating the PriorityQueue:
+        Iterator iterator = pq.iterator();
+  
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
+
+
+*/
