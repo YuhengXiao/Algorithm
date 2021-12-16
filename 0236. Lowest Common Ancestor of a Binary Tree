@@ -1,0 +1,48 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    HashMap<TreeNode, TreeNode> parent = new HashMap<TreeNode, TreeNode>();
+    HashSet<TreeNode> visited = new HashSet<TreeNode>();
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        dfs(root);
+        parent.put(root, null);
+        while(p != null){
+            visited.add(p);
+            p = parent.get(p);
+        }
+        while(q != null){
+            if (visited.contains(q)){
+                return q;
+            } else{
+                q = parent.get(q);
+            }
+        }
+        return root;
+    }
+    public void dfs(TreeNode root){
+        if (root.left != null){
+            parent.put(root.left, root);
+            dfs(root.left);
+        }
+        if (root.right != null){
+            parent.put(root.right, root);
+            dfs(root.right);
+        }
+    }
+}
+
+/*
+Notes:
+
+(Using “HashMap” to mark all the nodes’ parents 
++ Using “HashSet” to mark the nodes we had visited 
++ Checking whether or not the current node’s parent exists in the HashSet)
+
+*/
