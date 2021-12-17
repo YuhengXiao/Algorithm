@@ -1,0 +1,29 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        for (int[] row : matrix){
+            if(binarySearch(0, row.length - 1, row, target)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean binarySearch(int l, int r, int[] row, int target){
+        while(l <= r){
+            int m = (l + r) / 2;
+            if (row[m] == target){
+                return true;
+            } else if(row[m] < target){
+                return binarySearch(m + 1, r, row, target);
+            } else{
+                return binarySearch(l, m - 1, row, target);
+            }
+        }
+        return false;
+    }
+}
+
+/*
+Notes:
+
+(Using “Binary Search” if the list is sorted(in ascending or descending order).)
+*/
