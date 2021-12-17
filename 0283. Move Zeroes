@@ -1,0 +1,28 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int l = 0;
+        while (l < nums.length - 1 && nums[l] != 0){
+            l++;
+        }
+        int r = l;
+        while(r < nums.length){
+            if (nums[r] != 0){
+                swap(l, r, nums);
+                l++;
+            }
+            r++;
+        }
+
+    }
+    public void swap(int l, int r, int[] nums){
+        int temp = nums[l];
+        nums[l] = nums[r];
+        nums[r] = temp;
+    }
+}
+
+/*
+Notes:
+
+(Thinking about if we can using “two pointers” when we want to swap each elements in a list.)
+*/
