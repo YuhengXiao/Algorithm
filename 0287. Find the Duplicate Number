@@ -1,0 +1,53 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int slow = 0;
+        int fast = 0;
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while(slow != fast);
+        slow = 0;
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+    }
+}
+
+/*
+Notes:
+
+(Using “Floyd's algorithm” (fast-slow pointers) to solve “Linked List Cycle problems” (Finding out the beginning-nodes of the cycle))
+
+1.	“Floyd's algorithm”( fast and slow pointers):
+(1)	Step 1: Checking!
+    Before using “Floyd's algorithm”, we need to check if it’s a “Linked List Cycle problems” (Finding out the beginning-nodes of the cycle))?
+    For example: finding out the only one duplicates in a list (we can convert each element into a ListNode, and its value is what it points to.)
+(2)	Step 2: Finding the first intersection of slow pointer and fast pointer!
+    Setting slow and fast pointers to first index(0) of the list.
+    Let slow pointer moves once a time, and fast pointer moves twice a time.
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while(slow != fast);
+(3)	Step 3: Finding the beginning Node of the cycle!
+    Setting slow pointer to first index(0), keeping the fast pointer same.
+    Let slow pointer and fast pointer moves once a time until meets.
+    Return the node they meet(this node is the beginning node of the cycle).
+        slow = 0;
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+
+https://www.youtube.com/watch?v=wjYnzkAhcNk
+
+2.	“do-while loop”:
+  do{    
+     //code to be executed / loop body  
+     //update statement   
+  }while (condition);    
+
+*/
