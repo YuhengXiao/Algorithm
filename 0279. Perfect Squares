@@ -1,0 +1,30 @@
+class Solution {
+    public int numSquares(int n) {
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++){
+            int min = Integer.MAX_VALUE;
+            for (int j = 1; i - j * j >= 0; j++){
+                min = Math.min(min, dp[i - j * j]);
+            }
+            dp[i] = min + 1;
+        }
+        return dp[n];
+    }
+}
+
+/*
+Notes:
+
+(Using “Dynamic Programming” to solve “Knapsack problem” / “bag packing problem”)
+
+Value functions of Q279: 
+ 
+Explanation: The minimum of current number equals to one plus the minimum of all possible number which could be deducted “square of Integer”(make sure the number after deducted are larger then zero.)
+
+*”Boundary condition”: 
+1. We set the dp value of first element to 1.
+2. We start from dp[2] instead of dp[1]
+
+https://www.youtube.com/watch?v=HLZLwjzIVGo&t=367s
+*/
