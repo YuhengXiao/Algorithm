@@ -18,11 +18,11 @@ class Solution {
 /*
 Notes:
 
-(Using “Floyd's algorithm” (fast-slow pointers) to solve “Linked List Cycle problems” (Finding out the beginning-nodes of the cycle))
+(Using “Floyd's algorithm” (fast-slow pointers) to solve “Linked List Cycle problems” (Finding the one beginning-nodes of the “only one” cycle))
 
 1.	“Floyd's algorithm”( fast and slow pointers):
 (1)	Step 1: Checking!
-    Before using “Floyd's algorithm”, we need to check if it’s a “Linked List Cycle problems” (Finding out the beginning-nodes of the cycle))?
+    Before using “Floyd's algorithm”, we need to check if it’s a “Linked List Cycle problems” (Finding the one beginning-nodes of the “only one” cycle))?
     For example: finding out the only one duplicates in a list (we can convert each element into a ListNode, and its value is what it points to.)
 (2)	Step 2: Finding the first intersection of slow pointer and fast pointer!
     Setting slow and fast pointers to first index(0) of the list.
