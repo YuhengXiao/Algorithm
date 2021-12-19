@@ -27,17 +27,20 @@ Notes:
 (Using “Dynamic Programming”.)
 
 Value functions of Q300: 
-  dp[ i ] = max( dp[ j ] + 1 ), 其中0≤j<i且num[j]<num[i]
+  dp[ i ] = 1 + max( dp[ j ] ), 其中0≤j<i且num[j]<num[i]
   ans = max( dp[ i ] ), 其中0≤i<n
 
 Explanation: 
+  The dp value in this question means the longest length from current index to the end of the list.
   The current dp value equals to 1 add the maximum of all the available dp.
   The available dp means the indexes in the range of [current index + 1, arr.length - 1] and arr[current index] < arr[indexes in the range].
 
 *”Boundary condition”: 
   1. Setting the dp value of last index to 1.
   2. Start from the last index of the list instead of the first index.
-  3. Meeting the requirements mentioned in the “Explanation”.
+  3. Setting the default dp value of each index to 1 (1 means drop all the elements before it.)
+  4. Passing new dp value into current index must meets the requirements mentioned in the “Explanation”.
+
 
 https://www.youtube.com/watch?v=cjWnW0hdF1Y
 */
