@@ -1,0 +1,42 @@
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int[] dp = new int[nums.length];
+        dp[nums.length - 1] = 1;
+        int ans = 1;
+        for (int i = nums.length - 2; i >= 0 ; i--){
+            int max = 1;
+            for (int j = i + 1; j < nums.length; j++){
+                if (nums[i] < nums[j]){
+                    if (max < 1 + dp[j]){
+                        max = 1 + dp[j];
+                    }
+                }
+            }
+            dp[i] = max;
+            if (max > ans){
+                ans = max;
+            }
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Using “Dynamic Programming”.)
+
+Value functions of Q300: 
+  dp[ i ] = max( dp[ j ] + 1 ), 其中0≤j<i且num[j]<num[i]
+  ans = max( dp[ i ] ), 其中0≤i<n
+
+Explanation: 
+  The current dp value equals to 1 add the maximum of all the available dp.
+  The available dp means the indexes in the range of [current index + 1, arr.length - 1] and arr[current index] < arr[indexes in the range].
+
+*”Boundary condition”: 
+  1. Setting the dp value of last index to 1.
+  2. Start from the last index of the list instead of the first index.
+  3. Meeting the requirements mentioned in the “Explanation”.
+
+*/
