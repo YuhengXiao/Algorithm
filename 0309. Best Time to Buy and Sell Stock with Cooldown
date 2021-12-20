@@ -1,0 +1,38 @@
+class Solution {
+    /*
+    state:
+    0---> no share no cooldown
+    1---> no share yes cooldown
+    2---> yes share no cooldwon
+    */ 
+    public int maxProfit(int[] prices) {
+        int [][] cash = new int[prices.length][3];
+        return dfs(prices, 0, 0, cash);
+    }
+    public int dfs(int[] prices, int index, int state, int [][] cash){
+        if (index == prices.length){
+            return 0;
+        }
+        else if (cash[index][state] != 0){
+            return cash[index][state];
+        }
+        else if (state == 0){
+            cash[index][state] = Math.max(dfs(prices, index + 1, 2, cash) - prices[index], dfs(prices, index + 1, 0, cash));
+        }
+        else if (state == 1){
+            cash[index][state] = dfs(prices, index + 1, 0, cash);
+        }
+        else if (state == 2){
+            cash[index][state] = Math.max(dfs(prices, index + 1, 1, cash) + prices[index], dfs(prices, index + 1, 2, cash));
+        }
+        return cash[index][state];
+    }
+}
+
+/*
+Notes:
+
+(Using “Cashing” + “DFS”: to realize “backtracking”, “Cashing” is  implemented by “dynamic programming”)
+
+https://www.youtube.com/watch?v=I7j0F7AHpb8
+*/
