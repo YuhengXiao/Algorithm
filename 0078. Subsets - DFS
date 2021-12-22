@@ -38,6 +38,8 @@ Note:
 (3)	“For loop”: we don’t need “for loop” to consider valid indexes this time, because each sub-node just have two possibilities, appear or not appear.
 (4)	“Recursion” is telling the “For loop of the next sub-node (next row)” which indexes are valid.
          dfs(nums, index + 1);
+         •	We CANNOT write “dfs(nums, index++)”: recursion don’t understand “++” operator.
+         •	The value of “index” will deduct 1 after return back to last phase. (We can use global variable if we don’t want the value be deducted.)
     We need to remove the element we just added into the List to consider the second condition that current node is not to include.
         temp.remove(temp.size() - 1);
 (5)	“Visiting information” are not required. 
