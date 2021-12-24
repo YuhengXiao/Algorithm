@@ -32,7 +32,7 @@ class Solution {
 /*
 Notes:
 
-(Using “Cashing” + “DFS”: to realize “backtracking”, “Cashing” is  implemented by “dynamic programming”)
+(Using “Dynamic Programming (Cashing)” + “DFS”: to optimize “backtracking”)
 
 https://www.youtube.com/watch?v=I7j0F7AHpb8
 */
