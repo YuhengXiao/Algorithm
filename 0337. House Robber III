@@ -1,0 +1,55 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    HashMap<TreeNode, Integer> with = new HashMap<TreeNode, Integer>();
+    HashMap<TreeNode, Integer> without = new HashMap<TreeNode, Integer>();
+    public int rob(TreeNode root) {
+        dfs(root);
+        return Math.max(with.get(root), without.get(root));
+    }
+    public void dfs(TreeNode root){
+        if (root == null){
+            return;
+        }
+        dfs(root.left);
+        dfs(root.right);
+        with.put(root, root.val + without.getOrDefault(root.left, 0) + without.getOrDefault(root.right, 0));
+        without.put(root, Math.max(with.getOrDefault(root.left, 0), without.getOrDefault(root.left, 0)) + Math.max(with.getOrDefault(root.right, 0), without.getOrDefault(root.right, 0)));
+    }
+
+}
+
+/*
+Notes:
+
+(Using “Dynamic Programming (Cashing)” + “DFS”: to optimize “backtracking”)
+
+Value functions of Q337: 
+  dp[ i, with_i ] = i + dp[ i.left, without i.left ] + dp[ i.right, without i.right ]
+  dp[ i, without i ] = max( dp[ i.left, with i.left ], dp [ i.left, without i.left] ) + max( dp[ i.right, with i.right ], dp [ i.right, without i.right] )
+
+Explanation: 
+  If the current node is included, then the “maximum value with the current node” equals to the sum of “left node’s maximum value without itself“, “right node’s maximum value without itself“ and the value of the current node.
+  If the current node is excluded, then the “maximum value without the current node” equals to the sum of the biggest one of “left node’s maximum value with itself“, “left node’s maximum value without itself“ and the biggest one of “right node’s maximum value with itself”, “right node’s maximum value without itself”.
+
+*”Boundary condition”: 
+  1. the base case is “null”, we return.
+  2. when we return 0 if the node is null.
+  3. post-order traversal.
+ 
+https://www.youtube.com/watch?v=nHR8ytpzz7c
+
+*/
