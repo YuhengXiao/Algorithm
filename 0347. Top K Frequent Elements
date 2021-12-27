@@ -1,0 +1,39 @@
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> frequency = new HashMap<Integer, Integer>();
+        for (int num : nums){
+            frequency.put(num, 1 + frequency.getOrDefault(num, 0));
+        }
+
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {
+            public int compare(int[] m, int[] n) {
+                return m[1] - n[1];
+            }
+        });
+        
+        for (Map.Entry<Integer, Integer> entry : frequency.entrySet()){
+            int num = entry.getKey(), count = entry.getValue();
+            if (pq.size() < k){
+                pq.add(new int[]{num, count});
+            } else if (pq.peek()[1] < count){
+                pq.remove();
+                pq.add(new int[]{num, count});
+            }
+        }
+        int[]ans = new int[k];
+        for (int i = 0; i < k; i++){
+            ans[i] = pq.remove()[0];
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Using “HashMap” + “PriorityQueue”.)
+
+1.	“Comparator()”class: Using “Comparator” class to define particular “sorting criteria” of “PriorityQueue”.
+( The elements of the priority queue are ordered in ascending order by default.)
+
+*/
