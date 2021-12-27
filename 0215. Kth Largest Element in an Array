@@ -18,7 +18,7 @@ class Solution {
 /*
 Notes:
 
-(Using “PriorityQueue” to find the Kth largest element in a list.)
+(Using “PriorityQueue(heap)” to find the Kth largest element in a list.)
 
 1.	“PriorityQueue”: The difference between “Queue” and “PriorityQueue” is: the order of “Queue” is First-in-First-out, but the order of “PriorityQueue” is based on ascending value of elements by default.
 
