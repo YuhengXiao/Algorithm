@@ -51,7 +51,11 @@ Note:
    }
 2.	capacity():Returns the current capacity of the String buffer.
 3.	delete(int startIndex, int endIndex):
-    s.delete(0, 5);
+      s.delete(0, 5);
 4.	deleteCharAt(int loc):
-    s.deleteCharAt(7);
+      s.deleteCharAt(7);
+5.  insert(): 
+      StringBuffer insert(int index, String str)
+      StringBuffer insert(int index, char ch)
+
 */
