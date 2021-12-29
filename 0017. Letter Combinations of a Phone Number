@@ -44,6 +44,14 @@ Note:
     backtracking - abandon some solution candidates(might have a “base case”);
 
 1.	The StringBuffer class: are used when there is a necessity to make a lot of modifications to Strings of characters. (The difference between “StringBuffer” and “Creating a new List” to store String is : String stored in “StringBuffer” are concatenate, but in “Creating a new List” they are nested string.)
+ -1: create a StringBuilder object:
+        // using StringBuilder() constructor
+        StringBuilder str
+            = new StringBuilder();
+
+-2: output a StringBuilder object:
+       // using “toString()” convert StringBuilder into String
+	       System.out.println("String1 = " + str1.toString());
 
 0: create a StringBuilder object:
    public static void main(String args[]) {
