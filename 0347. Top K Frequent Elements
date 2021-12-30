@@ -36,4 +36,11 @@ Notes:
 1.	“Comparator()”class: Using “Comparator” class to define particular “sorting criteria” of “PriorityQueue”.
 ( The elements of the priority queue are ordered in ascending order by default.)
 
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {
+            public int compare(int[] m, int[] n) {
+                return m[1] - n[1];
+            }
+        });
+
+•	IF we want to sort in descending order, we need to return “return b[0] - a[0];”
 */
