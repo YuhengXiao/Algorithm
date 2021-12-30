@@ -45,5 +45,20 @@ Notes:
 •	IF we want to sort in upsending order, we need to return “return a[0] - b[0];”
 •	IF we want to sort in descending order, we need to return “return b[0] - a[0];”
 
+2.	“2D list”: When we creating a 2D-list, we must specify the size of the “row” and we better not pass value into the “column”.
+    int[][] ans = new int[people.length][];
+       输入
+        [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]] 
+       输出
+        [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]
+
+•	IF we passed value into the “column”, then we can only “set the value of the fixed element”. If you want to “insert a new array” into the column, it didn’t work.
+   int[][] ans = new int[people.length][2];
+      输入
+       [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]] 
+      输出
+       [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
+
+
 https://www.youtube.com/watch?v=khddrw6Bfyw
 */
