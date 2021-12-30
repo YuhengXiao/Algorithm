@@ -44,6 +44,7 @@ It uses this result to then determine if they should be swapped for their sort (
            return a[0] - b[0];
        }
     }    
+•	IF we want to sort in upsending order, we need to return “return a[0] - b[0];”
 •	IF we want to sort in descending order, we need to return “return b[0] - a[0];”
     
 Difference: 
