@@ -69,7 +69,7 @@ class Solution {
 /*
 Notes:
 
-(Using “Dynamic Programming” to solve “Knapsack problem” / “bag packing problem”)
+(Using “Dynamic Programming” to solve “Knapsack problem” / “bag packing problem”. We better not use DFS to resolve this kind of questions.)
 
 Value functions of Q416: 
   dp[ i ][ j ] = dp[ i – 1 ][ j ] | dp[ i - 1][ j – nums[ i ] ],      j >= nums[ i ]
