@@ -16,7 +16,7 @@ class Solution {
 /*
 Notes:
 
-(Using “Dynamic Programming” to solve “Knapsack problem” / “bag packing problem”)
+(Using “Dynamic Programming” to solve “Knapsack problem” / “bag packing problem”. We better not use DFS to resolve this kind of questions.)
 
 Value functions of Q279: 
  
