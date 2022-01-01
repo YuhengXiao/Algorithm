@@ -1,0 +1,87 @@
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++){
+            sum = nums[i] + sum;
+        }
+        if (sum % 2 != 0){
+            return false;
+        }
+        int target = sum / 2;
+        boolean[][] dp = new boolean[nums.length][target + 1];
+        for (int i = 0; i < nums.length; i++){
+            dp[i][0] = true;
+            if (nums[i] <= target){
+                dp[i][nums[i]] = true;
+            }
+        }
+        for (int j = 1; j < nums.length; j++){
+            int temp = nums[j];
+            for (int k = 0; k <= target; k++){
+                if (dp[j - 1][k] != false){
+                    dp[j][k] = true;
+                    if (k + temp <= target){
+                        dp[j][k + temp] = true;
+                    }
+                }
+            }
+        }
+        return dp[nums.length - 1][target];
+    }
+
+}
+
+--------------------------------------approach 2(DFS: NOT GOOD)-----------------------------------------
+
+class Solution {
+    HashMap<String,Boolean> count = new HashMap<String, Boolean>();
+    public boolean canPartition(int[] nums) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++){
+            sum = nums[i] + sum;
+        }
+        if (sum % 2 == 1) {
+            return false;
+        }
+        return dfs(nums, sum, 0, 0);
+    }
+    
+    public boolean dfs(int[] nums, int sum, int temp, int index){
+        if (index == nums.length){
+            if (temp == sum - temp){
+                return true;
+            } else{
+                return false;
+            }
+        }
+        String key = index + "&" + temp;
+        if (count.containsKey(key)){
+            return count.get(key);
+        }
+        boolean temp_ans = dfs(nums, sum, temp, index + 1) || dfs(nums, sum, temp + nums[index], index + 1);
+        count.put(key, temp_ans);
+        return temp_ans;
+    }
+
+}
+------------------------------------------------------------------------------------------------------------------
+
+/*
+Notes:
+
+(Using “Dynamic Programming” to solve “Knapsack problem” / “bag packing problem”)
+
+Value functions of Q416: 
+  dp[ i ][ j ] = dp[ i – 1 ][ j ] | dp[ i - 1][ j – nums[ i ] ],      j >= nums[ i ]
+  dp[ i ][ j ] = dp[ i -1][ j ],                                      j < nums[ i ]
+
+Explanation: 
+  The dp value of current index equals to the dp value of its last index. 
+  The only difference is when its last index’s value is valid and it add the current index’s value less equals to the target value, then set the dp value of current index(dp[current index][its last index’s value + current index’s value]) to true.
+
+*”Boundary condition”: 
+  1. set all the dp[index][0] to true.
+  2. set all the dp[index][index’s own value] to true if its value less equals to the target value.
+  3. start from the index 1 instead of 0.
+
+*/
