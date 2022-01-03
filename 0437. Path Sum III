@@ -1,0 +1,62 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int ans = 0;
+    public int pathSum(TreeNode root, int targetSum) {
+        dfs(root, targetSum);
+        return ans;
+    }
+    public void dfs(TreeNode root, int targetSum){
+        if (root == null){
+            return;
+        }
+        check(root, targetSum, root.val);
+        dfs(root.left, targetSum);
+        dfs(root.right, targetSum);
+    }
+    public void check(TreeNode root, int targetSum, int sum){
+        if (sum == targetSum){
+            ans++;
+        }
+        if(root.left != null){
+            check(root.left, targetSum, sum + root.left.val);
+        }
+        if(root.right != null){
+            check(root.right, targetSum, sum + root.right.val);
+        }
+    }
+}
+
+/*
+Notes:
+
+(Using two “DFS”, one for iterating through the whole binary tree, the other one for checking each nodes. Don’t mix two “DFS”, you better run them separately.)
+
+1.	To avoid counting repeatedly while we are summing all the nodes up, we can check before adding instead of checking after adding.
+----------------checking before adding---------------
+        check(root, targetSum, root.val);
+        if (sum == targetSum){
+            ans++;
+        }
+        check(root.left, targetSum, sum + root.left.val);
+   ----------------checking after adding---------------
+        check(root, targetSum, 0);
+        if (sum == targetSum){
+            ans++;
+        }
+        check(root.left, targetSum, sum + root.val);
+
+*/
