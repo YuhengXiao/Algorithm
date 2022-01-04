@@ -35,7 +35,9 @@ class Solution {
 /*
 Notes:
 
-(Using “Dynamic Programming (Cashing)” + “DFS”: to optimize “backtracking”)
+(Using “Dynamic Programming (Cashing)” + “DFS”: to optimize “backtracking”
+The “Cashing format”: discussed on Q494.)
+
 
 Value functions of Q337: 
   dp[ i, with_i ] = i + dp[ i.left, without i.left ] + dp[ i.right, without i.right ]
