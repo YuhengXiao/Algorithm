@@ -1,0 +1,57 @@
+class Solution {
+    HashMap<String, Integer> cashe = new HashMap<String, Integer>();
+    public int findTargetSumWays(int[] nums, int target) {
+        return dfs(nums, target, 0, 0);
+    }
+    public int dfs(int[] nums, int target, int sum, int index){
+        String key = index + "&" + sum;
+        if (cashe.containsKey(key)){
+            return cashe.get(key);
+        }
+        if (index == nums.length){
+            if (sum == target){
+                cashe.put(key, 1);
+            }else{
+                cashe.put(key, 0);
+            }
+            return cashe.get(key);
+        }
+        int add = dfs(nums, target, sum + nums[index], index + 1);
+        int subtract = dfs(nums, target, sum - nums[index], index + 1);
+        cashe.put(key, add + subtract);
+        return cashe.get(key);
+    }
+}
+
+/*
+Notes:
+
+(Using “Dynamic Programming (Cashes)” + “DFS”: to optimize “backtracking”)
+1.	Cashing format:
+(1)	Create particular “Key (with two or more parameters)” of HashMap:
+HashMap<String, Integer> cashe = new HashMap<String, Integer>();
+ String key = index + "&" + sum;
+(2)	Checking if current situation(key) has considered: just return the value of the key if the key already exists inside the HashMap (current situation has considered). 
+        if (cashe.containsKey(key)){
+            return cashe.get(key);
+        }
+(3)	Committing all the sub-result (each node leaf’s result): commit all the possible result and return it’s value whatever its valid or not.
+        if (index == nums.length){
+            if (sum == target){
+                cashe.put(key, 1);
+            }else{
+                cashe.put(key, 0);
+            }
+            return cashe.get(key);
+        }
+(4)	Committing all the temp-result (each node in the middle ‘s result): the temp-result of each node stands for the sum of all the sub-results of the current node in this situation(Key).
+     int add = dfs(nums, target, sum + nums[index], index + 1);
+     int subtract = dfs(nums, target, sum - nums[index], index + 1);
+     cashe.put(key, add + subtract);
+* Only committing each temp-result when we get the sum of all the sub-results. (Putting the temp-result into HashMap after finishing all the recursions of the current node)
+
+(5)	 Returning temp-result’s value to its last node(it’s parent node)
+     return cashe.get(key);
+
+
+*/
