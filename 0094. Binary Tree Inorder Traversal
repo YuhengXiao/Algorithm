@@ -19,7 +19,8 @@ class Solution {
 Notes:
 
 (1. Using “Recursion” to traverse a binary tree.
-2. the position of “adding node’s value” decide the way of traversal(pre-order, in-order, post-order))
+2. the position of “adding node’s value” decide the way of traversal(“pre order”, “in order”, “post order”))
+
 
 1.	Traverse a binary tree:
    class Solution {
