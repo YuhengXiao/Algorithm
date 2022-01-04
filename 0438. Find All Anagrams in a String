@@ -27,11 +27,11 @@ class Solution {
         return ans;
     }
     public boolean checksame(HashMap<Character, Integer> smap, HashMap<Character, Integer> pmap){
-        for (HashMap.Entry<Character, Integer> entry : pmap.entrySet()){
-            if (!smap.containsKey(entry.getKey())){
+        for (Character key : pmap.keySet()){
+            if (!smap.containsKey(key)){
                 return false;
             }
-            if (smap.get(entry.getKey()).intValue() != entry.getValue().intValue()){
+            if (smap.get(key).intValue() != pmap.get(key).intValue()){
                 return false;
             }
         }
@@ -40,15 +40,14 @@ class Solution {
 
 }
 
+
 /*
 Notes:
 
 (Using “Window Sliding Technique”: adding a new element at the end of subarray and remove the first element at the head of the subarray and check if the current subarray meet the requirement every time.)
 
 1.	“.intValue()”: we better change “Integer” to “Int” when we want to compare values of two “Integers”(“Int” is a type, “Integer” is a class object).
-    
-            if (smap.get(entry.getKey()).intValue() != entry.getValue().intValue()){
-  
-    }
+
+    if (smap.get(key).intValue() != pmap.get(key).intValue())
 
 */
