@@ -18,10 +18,9 @@ class Solution {
 /*
 Notes:
 
-(Using “Cumulative Sum” + “HashMap” when “Sliding Windows” doesn’t work(contains negatives, 
-which means we cannot make sure subtract the head elements from sum will decrease the sum).)
+(Using “Prefix Sum” + “HashMap” when “Sliding Windows” doesn’t work(contains negatives, which means we cannot make sure subtract the head elements from sum will decrease the sum).)
 
-1.	“Cumulative Sum”: 
+1.	“Prefix Sum”: 
   (1)	if the cumulative sum up to two indices, say i and j is at a difference of k. 
   (2)	if sum[i]−sum[j]=k, the sum of elements lying between indices i and j is kk.
   (3)	DON’T omit the sum[0]: means the pre value of the first element is zero.
