@@ -1,0 +1,32 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        if (needle.length() == 0){
+            return 0;
+        }
+        int index = 0;
+        while (index + needle.length() <= haystack.length()){
+            if (haystack.substring(index, index + needle.length()).equals(needle)){
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+}
+
+/*
+Notes:
+
+1.	“equals()”: compares the two strings. If any character is not matched, it returns false. If all characters are matched, it returns true.
+    String s1="javatpoint";
+    String s2="javatpoint";
+    String s3="JAVATPOINT";
+    System.out.println(s1.equals(s2));// return true 
+    System.out.println(s1.equals(s3));// return false
+
+2.	“indexOf()”: returns the position of the first occurrence of specified character(s) in a string.
+    String myStr = "Hello planet earth, you are a great planet.";
+    System.out.println(myStr.indexOf("planet"));
+    // Result: 6
+
+*/
