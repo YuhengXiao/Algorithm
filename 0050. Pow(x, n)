@@ -1,0 +1,44 @@
+class Solution {
+    public double myPow(double x, int n) {
+        if (n < 0){
+            return 1 / recursion(x, -n);
+        } else{
+            return recursion(x, n);
+        }
+
+    }
+
+    public double recursion(double x, int n){
+        if (n == 0){
+            return 1;
+        }
+        if (n % 2 == 0){
+            double temp = recursion(x, n / 2);
+            return temp * temp;
+        }
+        if (n % 2 != 0){
+            double temp = recursion(x, n / 2);
+            return x * temp * temp;
+        }
+        return 0;
+    }
+}
+
+/*
+Notes:
+
+(Using “Exponentiation by squaring”.)
+
+
+1.	“Exponentiation by squaring”: Using “Divide & Conquer” in Exponentiation.
+
+  (1)	Using “recursion” to figure out “X^(n/2)”, chop off the decimal portion.
+  (2)	If n is even, the current result equals to its last result’s square.
+  (3)	If n is odd, the current result equals to its last result’s square multiply by one X.
+
+  For example, if we want to calculate “X^64”, we can process in this order:
+    x→x2→x4→x8→x16→x32→x64
+  For example, if we want to calculate “X^77”, we can process in this order:
+    x→x2→x4→x9→x19→x38→x77
+
+*/
