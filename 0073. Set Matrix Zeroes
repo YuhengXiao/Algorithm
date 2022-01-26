@@ -1,0 +1,27 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        boolean[] row = new boolean[matrix.length];
+        boolean[] column = new boolean[matrix[0].length];
+        for (int x = 0; x < matrix.length; x++){
+            for (int y = 0; y < matrix[0].length; y++){
+                if (matrix[x][y] == 0){
+                    row[x] = true;
+                    column[y] = true;
+                }
+            }
+        }
+        for (int x = 0; x < matrix.length; x++){
+            for (int y = 0; y < matrix[0].length; y++){
+                if (row[x] || column[y]){
+                    matrix[x][y] = 0;
+                }
+            }
+        }
+    }
+}
+
+/*
+Notes:
+
+(Using “Boolean array row” and “Boolean array column” to mark the row and column that elements which meet the requirements and, in that row, column.)
+*/
