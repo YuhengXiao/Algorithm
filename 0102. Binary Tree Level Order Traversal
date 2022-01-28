@@ -43,9 +43,9 @@ class Solution {
 /*
 Notes:
 
-(DFS(Depth First Search): returning the level order traversal.)
+(BFS(Breadth First Search): returning the level order traversal.)
 
-1.	DFS(Depth First Search): traversing in the level order.
+1.	BFS(Breadth First Search): traversing in the level order.
 (1)	Step1: Assigning a “queue”, and using a “While loop” to do the DFS.
 (2)	Step2: Adding the root into the queue.
 (3)	Step3: Using a “for loop” to iterate all the value in the queue. For each value, removing the value and adding its child immediately. 
