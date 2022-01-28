@@ -1,0 +1,61 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        if (root == null){
+            return ans;
+        }
+        List<Integer> level = new ArrayList<Integer>();
+        Deque<TreeNode> deque = new LinkedList<TreeNode>();
+        deque.add(root);
+        boolean leftward = true;
+        while(!deque.isEmpty()){
+            int curlength = deque.size();
+            for (int i = 0; i < curlength; i++){
+                if (leftward){
+                    TreeNode cur = deque.removeFirst();
+                    level.add(cur.val);
+                    if (cur.left != null){
+                        deque.addLast(cur.left);
+                    }
+                    if (cur.right != null){
+                        deque.addLast(cur.right);
+                    }
+                } else{
+                    TreeNode cur = deque.removeLast();
+                    level.add(cur.val);
+                    if (cur.right != null){
+                        deque.addFirst(cur.right);
+                    }
+                    if (cur.left != null){
+                        deque.addFirst(cur.left);
+                    }
+                }
+            }
+            leftward = !leftward;
+            ans.add(new ArrayList(level));
+            level.clear();
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Using “BFS” + “Deque”)
+*/
