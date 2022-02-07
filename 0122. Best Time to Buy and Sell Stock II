@@ -1,0 +1,47 @@
+--------------------approach 1(Two pointers)--------------------------
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int l = 0, r = l + 1;
+        int sum = 0;
+        while(r < prices.length){
+            if (prices[r] > prices[l]){
+                sum = sum + prices[r] - prices[l];
+            }
+            l++;
+            r++;
+        }
+        return sum;
+    }
+}
+
+--------------------approach 2(DFS without Cashing)--------------------------
+
+class Solution {
+    int max = 0;
+    public int maxProfit(int[] prices) {
+        dfs(0, 0, false, 0, prices);
+        return max;
+    }
+    public void dfs(int day, int profit, boolean buy, int cost, int[] prices){
+        if (day == prices.length){
+            if (profit > max){
+                max = profit;
+            }
+            return;
+        }
+        if (buy){
+            dfs(day + 1, profit + prices[day] - cost, !buy, 0, prices);
+            dfs(day + 1, profit, buy, cost, prices);
+        } else{
+            dfs(day + 1, profit, !buy, prices[day], prices);
+            dfs(day + 1, profit, buy, 0, prices);
+        }
+    }
+}
+
+/*
+Notes:
+
+(Using two pointers when we want to get the maximum difference among all the elements)
+*/
