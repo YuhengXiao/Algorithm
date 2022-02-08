@@ -1,0 +1,35 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        int l = 0, r = s.length() - 1;
+        s = s.toLowerCase();
+        while(l < r){
+            while(l < s.length() - 1 && !Character.isDigit(s.charAt(l)) && !Character.isLetter(s.charAt(l))){
+                l++;
+            }
+            while(r > 0 && !Character.isDigit(s.charAt(r)) && !Character.isLetter(s.charAt(r))){
+                r--;
+            }
+            if (l < r && s.charAt(l) != s.charAt(r)){
+                return false;
+            }
+            l++;
+            r--;
+        }
+        return true;
+    }
+}
+
+/*
+Notes:
+
+(Using “Two pointers”)
+
+1.	“Character.isLetter(char ch)”: This method returns true if the passed character is really a character.
+      System.out.println(Character.isLetter('c'));    // Output  true
+      System.out.println(Character.isLetter('5'));    // Output  false
+    
+2.	“isDigit(char ch)”: This method returns true, if the passed character is really a digit.
+      System.out.println(Character.isDigit('c'));    // Output  false
+      System.out.println(Character.isDigit('5'));    // Output  true
+
+*/
