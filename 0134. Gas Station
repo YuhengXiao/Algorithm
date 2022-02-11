@@ -1,0 +1,39 @@
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int sum_gas = 0;
+        for (int i = 0; i < gas.length; i++){
+            sum_gas = sum_gas + gas[i];
+        }
+        int sum_cost = 0;
+        for (int i = 0; i < cost.length; i++){
+            sum_cost = sum_cost + cost[i];
+        }
+        if (sum_gas < sum_cost){
+            return -1;
+        }
+        int[] difference = new int[gas.length];
+        for (int i = 0; i < gas.length; i++){
+            difference[i] = gas[i] - cost[i];
+        }
+        for (int i = 0; i < difference.length; i++){
+            int start = i;
+            int temp = difference[i];
+            while(temp >= 0){
+                i++;
+                if (i == difference.length){
+                    return start;
+                }
+                temp = temp + difference[i];
+            }
+        }
+        return -1;
+    }
+}
+
+/*
+Notes:
+
+(1.	Comparing the difference of two arrays’ elements’ value at each index.
+(2.	Using “Greedy Algorithm” to drop cases which the first index at “difference array” is negative.)
+
+*/
