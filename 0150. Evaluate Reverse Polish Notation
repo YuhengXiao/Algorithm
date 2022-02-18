@@ -1,0 +1,37 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> stack = new Stack<Integer>();
+        for (int i = 0; i < tokens.length; i++){
+            if (tokens[i].equals("+") || tokens[i].equals("-") || tokens[i].equals("*") || tokens[i].equals("/")){
+                int num2 = stack.pop();
+                int num1 = stack.pop();
+                int sum = 0;
+                if (tokens[i].equals("+")){
+                    sum = num1 + num2;
+                } else if (tokens[i].equals("-")){
+                    sum = num1 - num2;
+                } else if (tokens[i].equals("*")){
+                    sum = num1 * num2;
+                } else if (tokens[i] .equals("/")){
+                    sum = num1 / num2;
+                }
+                stack.push(sum);
+            } else{
+                stack.push(Integer.valueOf(tokens[i]));
+            }
+        }
+        return stack.pop();
+    }
+}
+
+/*
+Notes:
+(Using “Stack” to tackle with “Notation”.)
+
+1. “Infix natation”:
+   A + B
+2. “Postfix Notation”:
+   A B +
+3. “Prefix Natation”:
+   + A B
+*/
