@@ -1,0 +1,21 @@
+class Solution {
+    public int titleToNumber(String columnTitle) {
+        int ans = 0;
+        int digit = 1;
+        for (int i = columnTitle.length() - 1; i >= 0; i--){
+            ans = ans + (columnTitle.charAt(i) - 'A' + 1) * digit;
+            digit = digit * 26;
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Simulate “base-26”)
+
+1.	Converting “Char” into “number”:
+    columnTitle.charAt(i) - 'A' + 1
+
+*/
