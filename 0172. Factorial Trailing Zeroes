@@ -1,0 +1,28 @@
+class Solution {
+    public int trailingZeroes(int n) {
+        int twoCount = 0;
+        for (int i = 2; i <= n; i += 2){
+            int currentFactor = i;
+            while(currentFactor % 2 == 0){
+                twoCount++;
+                currentFactor /= 2;
+            }
+        }
+
+        int zeroCount = 0;
+        for (int i = 5; i <= n; i += 5){
+            int currentFactor = i;
+            while (currentFactor % 5 == 0){
+                zeroCount++;
+                currentFactor /= 5;
+            }
+        }
+        return Math.min(twoCount, zeroCount);
+    }
+}
+
+/*
+Notes:
+
+(Find the number of “trailing zeroes” by checking the number of “factor 5” and the number of “factor 2”(wen can omit the number of “factor 2”))
+*/
