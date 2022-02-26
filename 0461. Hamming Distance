@@ -16,6 +16,7 @@ Notes:
 (Using “Bitwise operator”. To point out: “Bitwise operators” ’s precedence is lower than “logical operators”(+, -, *, /), so we don’t forget to use round bracket in some situations)
 
 1.	Bitwise AND (&): It is a binary operator denoted by the symbol &. It returns 1 if and only if both bits are 1, else returns 0.
+•	We often use “bits & 1”: to get the last digit of the “bits”
  
 int x = 9, y = 8;   
 // bitwise and   
