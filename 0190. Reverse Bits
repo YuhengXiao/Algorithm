@@ -1,0 +1,32 @@
+public class Solution {
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        int ans = 0;
+        for (int i = 0; i < 32; i++){
+            int get_last_bt = (n >> i) & 1;
+            int add_new_bt = get_last_bt << (31 - i);
+            ans = ans + add_new_bt;
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Using “Bitwise operation”)
+
+public class Solution {
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        int ans = 0;
+        for (int i = 0; i < 32; i++){
+            int get_last_bit = (n >> i) & 1; // Using "&" to get the last digit number of the "bit"
+            int add_new_bit = get_last_bit << (31 - i); // Using "<<" to create a new "bit" which "last digit number" is on the right place
+            ans = ans + add_new_bit; // add the "new bit" to the result
+        }
+        return ans;
+    }
+}
+
+*/
