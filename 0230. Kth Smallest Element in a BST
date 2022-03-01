@@ -1,0 +1,40 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    List<Integer> visited;
+    public int kthSmallest(TreeNode root, int k) {
+        visited = new ArrayList<Integer>();
+        dfs(root, k);
+        return visited.get(k - 1);
+    }
+    public void dfs(TreeNode root, int k){
+        if (root == null){
+            return;
+        }
+        if (visited.size() == k){
+            return;
+        }
+        dfs(root.left, k);
+        visited.add(root.val);
+        dfs(root.right, k);
+    }
+}
+
+/*
+Notes:
+
+(Using “Inorder Traversal” to find Kth Smallest Node in a Binary Search Tree.)
+*/
