@@ -72,7 +72,17 @@ Notes:
                 dfs(v);
 
 (4)	“Checking a loop”: if the “current course” has “Prerequisite courses”, then we using DFS to setting all the “Prerequisite courses to 1”, return false if anyone is already equals 1.
+            } else if (visited[v] == 1){
+                valid = false;
+            }
+
 (5)	“Removing visited Prerequisite courses”: Setting valid visited prerequisite courses to 2.
+        result[index] = u;
+        index++;
+        visited[u] = 2;
+
+
 https://www.youtube.com/watch?v=Akt3glAwyfY&t=638s
+
 
 */
