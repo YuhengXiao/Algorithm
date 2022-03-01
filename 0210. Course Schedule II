@@ -1,0 +1,78 @@
+class Solution {
+    List<List<Integer>> graph;
+    int[] visited;
+    int[] result;
+    int index = 0;
+    boolean valid = true;
+
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        visited = new int[numCourses];
+        result = new int[numCourses];
+        graph = new ArrayList<List<Integer>>();
+        for (int i = 0; i < numCourses; i++){
+            graph.add(new ArrayList<Integer>());
+        }
+        for (int[] info : prerequisites){
+            graph.get(info[0]).add(info[1]);
+        }
+        for (int i = 0; i < numCourses; i++){
+            if (visited[i] == 0){
+                dfs(i);
+            }
+        }
+        if (!valid){
+            return new int[0];
+        }
+        return result;
+    }
+
+    public void dfs(int u){
+        visited[u] = 1;
+        for (int v : graph.get(u)){
+            if (visited[v] == 0){
+                dfs(v);
+            } else if (visited[v] == 1){
+                valid = false;
+            }
+        }
+        result[index] = u;
+        index++;
+        visited[u] = 2;
+
+    }
+}
+
+/*
+Notes:
+
+(“Topological”: Course Schedule Problem)
+
+1.	“Course Schedule Problem Solution”:
+(1)	Creating a “Prerequisites Array” by Using “List<List<Integer>> graph”:
+        for (int i = 0; i < numCourses; i++){
+            graph.add(new ArrayList<Integer>());
+        }
+        for (int[] info : prerequisites){
+            graph.get(info[0]).add(info[1]);
+        }
+
+ 
+(2)	Iterate through all “Prerequisite courses (Elements in Prerequisites Array)”:
+        for (int i = 0; i < numCourses; i++){
+            if (visited[i] == 0){
+                dfs(i);
+            }
+        }
+
+(3)	Iterate through all “Advanced courses” of the current “Prerequisite courses” if “Advanced courses” haven’t visited.
+    public void dfs(int u){
+        visited[u] = 1;
+        for (int v : graph.get(u)){
+            if (visited[v] == 0){
+                dfs(v);
+
+(4)	“Checking a loop”: if the “current course” has “Prerequisite courses”, then we using DFS to setting all the “Prerequisite courses to 1”, return false if anyone is already equals 1.
+(5)	“Removing visited Prerequisite courses”: Setting valid visited prerequisite courses to 2.
+https://www.youtube.com/watch?v=Akt3glAwyfY&t=638s
+
+*/
