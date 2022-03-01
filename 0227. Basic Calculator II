@@ -1,0 +1,42 @@
+class Solution {
+    public int calculate(String s) {
+        Stack<Integer> stack = new Stack<Integer>();
+        int cur_num = 0;
+        char preOperator = '+';
+        for (int i = 0; i < s.length(); i++){
+            if (Character.isDigit(s.charAt(i))){
+                // cur_num = cur_num * 10 + Integer.valueOf(s.charAt(i));
+                cur_num = cur_num * 10 + s.charAt(i) - '0';
+            }
+            if (!Character.isDigit(s.charAt(i)) && s.charAt(i) != ' ' || i == s.length() - 1){
+                if (preOperator == '+'){
+                    stack.add(cur_num);
+                } else if (preOperator == '-'){
+                    stack.add(-cur_num);
+                } else if (preOperator == '*'){
+                    stack.add(stack.pop() * cur_num);
+                } else if (preOperator == '/'){
+                    stack.add(stack.pop() / cur_num);
+                }
+                cur_num = 0;
+                preOperator = s.charAt(i);
+            }
+        }
+        int ans = 0;
+        while (!stack.isEmpty()){
+            ans = ans + stack.pop();
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+1.	Using “Stack” to simulate “Basic Operations” by:
+1)	Set default “pre-operator” as “+”.
+2)	Push number into stack directly if “pre-operator” is “+” or “-”.
+3)	Pop out the top number and do the “*” or “/”, and then push the result into stack.
+4)	Update the “pre-operator” to the “current-operator”.
+
+*/
