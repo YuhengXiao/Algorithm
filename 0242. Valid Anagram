@@ -1,0 +1,18 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] s1 = s.toCharArray();
+        char[] t1 = t.toCharArray();
+        Arrays.sort(s1);
+        Arrays.sort(t1);
+        return Arrays.equals(s1, t1);
+    }
+}
+
+/*
+Notes:
+
+(Using “HashMap” or “toCharArray() + Arrays.sort()” to check if the numbers of each character are equal or not.)
+
+1.	“Arrays.equals(arr1, arr2)”: return true if two arrays are equal.
+
+*/
