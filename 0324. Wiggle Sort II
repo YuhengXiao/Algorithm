@@ -13,3 +13,9 @@ class Solution {
 
     }
 }
+
+/*
+Notes:
+
+(Placing “duplicates” at the tow ends of array to satisfy condition.)
+*/
