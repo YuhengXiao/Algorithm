@@ -1,0 +1,29 @@
+class Solution {
+    public boolean increasingTriplet(int[] nums) {
+        if (nums.length < 3){
+            return false;
+        }
+        int[] minarr = new int[nums.length];
+        int min = nums[0];
+        for (int i = 0; i < nums.length; i++){
+            if(nums[i] < min){
+                min = nums[i];
+            }
+            minarr[i] = min;
+        }
+        int[] maxarr = new int[nums.length];
+        int max = nums[nums.length - 1];
+        for (int i = nums.length - 1; i >= 0; i--){
+            if(nums[i] > max){
+                max = nums[i];
+            }
+            maxarr[i] = max;
+        }
+        for (int i = 1; i < nums.length - 1; i++){
+            if (nums[i] > minarr[i - 1] && nums[i] < maxarr[i + 1]){
+                return true;
+            }
+        }
+        return false;
+    }
+}
