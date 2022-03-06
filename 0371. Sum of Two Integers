@@ -1,0 +1,21 @@
+class Solution {
+    public int getSum(int a, int b) {
+        while(b != 0){
+            int or = a ^ b;
+            int carry = (a & b) << 1;
+            a = or;
+            b = carry;
+        }
+        return a;
+    }
+}
+
+/*
+Notes:
+
+(Using “Bitwise operation” to express “addtion”.
+  (1)	Using “a & b” to check if carry occur.
+  (2)	Using “(a & b) <<< 1” to carry.
+  (3)	Using “a ^ b” to represent digits don’t need carry.)
+
+*/
