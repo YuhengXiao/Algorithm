@@ -22,5 +22,5 @@ class Solution {
 /*
 Notes:
 
-(Using “PriorityQueue” to find the Kth smallest element in an Matrix.)
+(Using “PriorityQueue” to find the Kth smallest element in a Matrix.)
 */
