@@ -1,0 +1,25 @@
+class Solution {
+    public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
+        HashMap<Integer, Integer> map1 = new HashMap<Integer, Integer>();
+        for (int a : nums1){
+            for (int b : nums2){
+                map1.put(a + b, map1.getOrDefault(a + b, 0) + 1);
+            }
+        }
+        int ans = 0;
+        for (int c : nums3){
+            for (int d : nums4){
+                if (map1.containsKey(-c-d)){
+                    ans = ans + map1.get(-c-d);
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Using “Divide & Conquer” to found out all the combinations satisfy conditions by dividing 4 numbers into the sum of two numbers.)
+*/
