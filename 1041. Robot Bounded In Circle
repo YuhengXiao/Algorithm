@@ -1,0 +1,42 @@
+class Solution {
+    public boolean isRobotBounded(String instructions) {
+        int dir = 0; // N:0 E:1 S:2 W:3
+        int x = 0, y = 0; // location
+        for (int i = 0; i < instructions.length(); i++){
+            if (instructions.charAt(i) == 'L'){
+                dir += 3;
+            }
+            if (instructions.charAt(i) == 'R'){
+                dir += 1;
+            }
+            if (instructions.charAt(i) == 'G'){
+                if (dir % 4 == 0){
+                    y++;
+                }
+                if (dir % 4 == 1){
+                    x++;
+                }
+                if (dir % 4 == 2){
+                    y--;
+                }
+                if (dir % 4 == 3){
+                    x--;
+                }
+            }
+        }
+        if (x == 0 && y == 0){
+            return true;
+        }
+        if (dir % 4 == 0){
+            return false;
+        }
+        return true;
+    }
+}
+
+
+/*
+Notes;
+
+1.	“modulus %”: We CANNOT get a module of a “negative number” (error).
+*/
