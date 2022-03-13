@@ -1,0 +1,39 @@
+class Solution {
+    public String mostCommonWord(String paragraph, String[] banned) {
+        paragraph += ".";
+        HashSet<String> ban = new HashSet();
+        HashMap<String, Integer> count = new HashMap();
+        for (String a : banned){
+            ban.add(a);
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < paragraph.length(); i++){
+            if (Character.isLetter(paragraph.charAt(i))){
+                sb.append(Character.toLowerCase(paragraph.charAt(i)));
+            } else{
+                if (sb.length() > 0){
+                    String newword = sb.toString();
+                    if (!ban.contains(newword)){
+                        count.put(newword, count.getOrDefault(newword, 0) + 1);
+                    }
+                }
+                sb = new StringBuilder();
+            }
+        }
+        String ans = "";
+        int max = 0;
+        for (String a : count.keySet()){
+            if (count.get(a) > max){
+                ans = a;
+                max = count.get(a);
+            }
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Using “StringBuilder” to extract “valuable elements” from a “String”.)
+*/
