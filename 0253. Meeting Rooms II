@@ -1,0 +1,27 @@
+class Solution {
+    public int minMeetingRooms(int[][] intervals) {
+        Arrays.sort(intervals, new Comparator<int[]>(){
+            public int compare(int[] a, int[] b){
+                return a[0] - b[0];
+            }
+        });
+        
+        PriorityQueue<Integer> room = new PriorityQueue();
+        room.add(intervals[0][1]);
+        for (int i = 1; i < intervals.length; i++){
+            if (intervals[i][0] < room.peek()){
+                room.add(intervals[i][1]);
+            } else{
+                room.remove();
+                room.add(intervals[i][1]);
+            }
+        }
+        return room.size();
+    }
+}
+
+/*
+Notes:
+
+(Using “Array.sort()” to process in order, and using “Priorityqueue” to check intersection.)
+*/
