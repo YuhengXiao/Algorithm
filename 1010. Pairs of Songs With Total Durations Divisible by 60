@@ -1,0 +1,23 @@
+class Solution {
+    public int numPairsDivisibleBy60(int[] time) {
+        HashMap<Integer, Integer> count = new HashMap();
+        int ans = 0;
+        for (int num : time){
+            if (num % 60 == 0){
+                ans = ans + count.getOrDefault(0, 0);
+            } else{
+                ans = ans + count.getOrDefault((60 - num % 60), 0);
+            }
+            count.put(num % 60, count.getOrDefault((num % 60), 0) + 1);
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Finding out all the sum divisible by 60, by using “hashmap” to count the number of each “element modulus 60”, and recombine.)
+
+https://www.youtube.com/watch?v=5gHnQ4lfDko
+*/
