@@ -1,0 +1,51 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    HashMap<TreeNode, TreeNode> parent = new HashMap();
+    List<Integer> ans = new ArrayList();
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+        mark_all_parents(root);
+        find_all_ans(target, null, 0, k);
+        return ans;
+    }
+    public void mark_all_parents(TreeNode root){
+        if (root.left != null){
+            parent.put(root.left, root);
+            mark_all_parents(root.left);
+        }
+        if (root.right != null){
+            parent.put(root.right, root);
+            mark_all_parents(root.right);
+        }
+    }
+    public void find_all_ans(TreeNode root, TreeNode from, int length, int k){
+        if (root == null){
+            return;
+        }
+        if (length == k){
+            ans.add(root.val);
+        }
+        if (root.left != from){
+            find_all_ans(root.left, root, length + 1, k);
+        }
+        if (root.right != from){
+            find_all_ans(root.right, root, length + 1, k);
+        }
+        if (parent.get(root) != from){
+            find_all_ans(parent.get(root), root, length + 1, k);
+        }
+    }
+}
+
+/*
+Notes:
+
+(DFS: iterate through downward and both upward. Using “DFS” to search a “graph” with a “hashmap to store parent node” and backtracking.)
+*/
