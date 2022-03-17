@@ -1,0 +1,38 @@
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        int ans = nums[0] + nums[1] + nums[2];
+        int diff = Math.abs(ans - target);
+        for (int i = 0 ; i < nums.length; i++){
+            int subtarget = target - nums[i];
+            int l = i + 1, r = nums.length - 1;
+            while(l < r){
+                if (Math.abs(nums[i] + nums[l] + nums[r] - target) < diff){
+                    ans = nums[i] + nums[l] + nums[r];
+                    diff = Math.abs(ans - target);
+                }
+                int tempsum = nums[l] + nums[r];
+                if (tempsum == subtarget){
+                    return target;
+                }
+                if (tempsum < subtarget){
+                    l++;
+                }
+                if (tempsum > subtarget){
+                    r--;
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+/*
+Notes:
+
+(Finding out closest “3Sum” by converting “3Sum” into “2Sum”(“Target value” – “one of 3Sum”), and using “Arrays.sort() + Two pointers” to find the best conbination)
+
+1.	“Math.abs(n)”: returning Absolute value.
+    int value = Math.abs(n);
+
+*/
